@@ -1,0 +1,24 @@
+body,td,th {  font-size: 13px;  color: #464646;  }
+a {  font-size: 13px;  color: #464646;  }
+a:link {  text-decoration: none;  }
+a:visited {  text-decoration: none;  color: #464646;  }
+a:hover {  text-decoration: underline;  color: #464646;  }
+a:active {  text-decoration: none;  color: #464646;  }
+.header1{margin:0 auto; width:1000px; height:91px; background:url(../1279778162.jpg); background-position:right;}
+.header2{margin:0 auto; width:1000px; height:41px; background:url(../menubg.jpg);}
+.header1_1{ height:41px; float:left; color:#ffffff; background:url(../menubg1.jpg); background-position:right; background-repeat:no-repeat;}
+.header1_1:hover{ height:41px; float:left; color:#ffffff; background:url(../menubg2.jpg);}
+.header1_1 span{ display:block; text-align:center; font-size:13px; margin-left:25px; margin-right:25px; margin-top:10px;cursor:pointer;}
+.content1_1 a{ font-weight:bold;color:#F00;}
+
+.content_div{width:225px; float:left; background:url(../bg8.jpg) repeat-x bottom; border:#d3d3d3 1px solid;}
+.content_div_1{margin:4px; background:url(../bg9.jpg) repeat-x bottom; height:74px;}
+.content_div_2{margin:0px 15px 15px 15px; line-height:150%;}
+.content_div_3{margin-top:20px;border:#d3d3d3 1px solid; background:url(../bg10.jpg) no-repeat left;}
+.content_div_4{background:url(../title.jpg); height:30px; border-left:#d3d3d3 1px solid; border-right:#d3d3d3 1px solid;}
+.content_div_5{ border-bottom:#d3d3d3 1px solid;; border-left:#d3d3d3 1px solid;; border-right:#d3d3d3 1px solid; padding:18px; line-height:150%;}
+.content_div_6{background:url(../title1.jpg); height:30px; border-left:#d3d3d3 1px solid; border-right:#d3d3d3 1px solid; margin-top:20px;}
+.content_div_7{ border-bottom:#d3d3d3 1px solid;; border-left:#d3d3d3 1px solid;; border-right:#d3d3d3 1px solid; padding:18px; line-height:150%; background:url(../bg445.jpg) no-repeat bottom;  }
+
+.fooer{height:22px; background:#FFF; width:1000px; margin:0 auto;}
+.fooer1{height:50px; width:1000px; margin:0px auto; background:url(../bgend.jpg); color:#FFF;}

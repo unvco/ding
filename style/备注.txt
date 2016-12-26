@@ -1,0 +1,12 @@
+bootstrap   bootstrap框架
+font-awesome   图标css框架
+bootstrap-slider  滑块插件
+bootstrap-daterangepicker   日期挂件插件
+jquery
+jquery-toastr  jquery通知插件toastr
+jQueryUI       jQueryUI ui插件
+echart  纯Javascript的图表库
+iCheck  单选框和复选框特效样式
+iscroll 滚动插件
+jquery-shiseqi  jquery拾色器
+jQuery-make-div jquery自定义div
