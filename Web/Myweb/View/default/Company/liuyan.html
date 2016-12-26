@@ -1,0 +1,126 @@
+<include file="include/public_header"/>
+<div class="row" style="margin: 0 auto; width: 1000px; background:#FFF;">
+    <!--内容 -->
+    <include file="include/public_1"/>
+    <!--左边 -->
+    <!--右边 -->
+    <div style="width:730px; float:left; margin-left:25px; margin-top:20px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td height="43px" background="yangshi/contentbg1.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你现在所在的位置：企业<a href="/">首页</a>&nbsp;>&nbsp;<a>企业留言板</a></td>
+            </tr>
+            <tr>
+                <td background="yangshi/contentbg2.jpg">
+                    <div style="margin:25px;">
+                        <!--其他用户评论区 -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="17%" height="30" align="right"><div style="margin-bottom:7px; margin-top:7px;">联系人：</div>
+                                    <div style="margin-bottom:7px; margin-top:7px;">邮&nbsp;&nbsp;&nbsp;箱：</div></td>
+                                <td width="83%">
+                                    <div style="margin-bottom:7px; margin-top:7px;"><input id="user" name="user" type="text" style="border-bottom:1px solid #dbdbdb; border-left:1px solid #828282; border-right::1px solid #dbdbdb; border-top::1px solid #828282; line-height:25px; height:25px; width:200px; margin-right:15px;">&nbsp;&nbsp;&nbsp;&nbsp;
+                                        QQ：<input id="QQ" name="QQ" type="text" style="border-bottom:1px solid #dbdbdb; border-left:1px solid #828282; border-right::1px solid #dbdbdb; border-top::1px solid #828282; line-height:25px; height:25px; width:200px; margin-right:15px;">
+
+                                    </div>
+                                    <div style="margin-bottom:7px; margin-top:7px;"><input id="email" name="email" type="text" style="border-bottom:1px solid #dbdbdb; border-left:1px solid #828282; border-right::1px solid #dbdbdb; border-top::1px solid #828282; line-height:25px; height:25px; width:200px; margin-right:15px;">&nbsp;&nbsp;&nbsp;&nbsp;
+                                        电话：<input id="dianhua" name="dianhua" type="text" style="border-bottom:1px solid #dbdbdb; border-left:1px solid #828282; border-right::1px solid #dbdbdb; border-top::1px solid #828282; line-height:25px; height:25px; width:200px; margin-right:15px;">
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>留言内容：</td>
+                                <td width="83%">
+                                    <textarea name="liuyan" class="liuyan" style="width:530px; height:150px; line-height:27px; padding:10px;"></textarea>
+                                    <div style="margin-top:20px;">验证码：<input id="yanzhengma" name="" type="text" style="border-bdth:60px; margin-right:15px;"><!--{code_fun}--></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td height="35" align="center">
+                                    <input type="button" id="liuyan_tijiao" onclick="post_liuyan()" value="提交" style="margin-right:30px;" />
+                                    <input type="button" id="liuyan_qingkong" value="清空" />
+                                    <script language="javascript">
+                                        function post_liuyan() {
+                                            var liuyan=$(".liuyan").val();//留言
+                                            var user=$("#user").val();//用户名
+                                            var to_id="<?php echo($user_id);?>";//用户名
+                                            if(to_id==""){to_id="0";}
+                                            var qq=$("#QQ").val();//QQ
+                                            var email=$("#email").val();//email
+                                            var dianhua=$("#dianhua").val();//电话
+                                            var yanzhengma=$("#yanzhengma").val();//验证码
+                                            var qiye_http=$("#qiye_http").val();//网站的域名
+                                            var action="liuyan";
+                                            if(liuyan==""){alert("主要留言不能为空！！");}
+                                            else if(user==""){alert("用户名不能为空！！");}
+                                            else if(qq==""){alert("QQ不能为空！！");}
+                                            else if(email==""){alert("email不能为空！！");}
+                                            else if(dianhua==""){alert("电话不能为空！！");}
+                                            else{
+                                                $.post("<?php echo($http_host);?>/action/liuyan_post.php",
+                                                    {
+                                                        liuyan:liuyan,
+                                                        user:user,
+                                                        to_id:to_id,
+                                                        qq:qq,
+                                                        email:email,
+                                                        dianhua:dianhua,
+                                                        yanzhengma:yanzhengma,
+                                                        action:action
+                                                    },
+                                                    function(data,status){
+                                                        if(data=="发表留言成功"){alert("发表留言成功");location.href="<?php echo($http_host);?>/space.php/to/<?php echo($user_id)?>_<?php echo($muban);?>.html";}
+                                                        else{alert(data);}
+                                                    });
+                                            }
+
+                                        }
+                                        $(document).ready(function(){
+                                            $('#liuyan_qingkong').click(function(){
+                                                $(".liuyan").val("");//文章简介
+                                                $("#yanzhengma").val("");//文章简介
+                                            });
+                                        });
+                                    </script>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--其他用户评论区 -->
+                        <div style=" padding-left:20px; color:#F66; font-size:16px; font-weight:bold; line-height:35px; border-bottom:1px solid #d7cfcb;">留言列表</div>
+                        <!--留言列表 -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="130px" rowspan="3" align="center"><img src="yangshi/yonghu1.jpg" width="90" height="90" style="border:4px solid #e3dedb;" /></td>
+                                <td height="25" align="right" style="color:#7e7d7c;font-size:13px;"><?php echo(mysql_result($result,$i,"mingzi"));?>&nbsp;&nbsp;留言于&nbsp;&nbsp;<?php echo(mysql_result($result,$i,"time"));?></td>
+                            </tr>
+                            <tr>
+                                <td style="color:#7e7d7c;font-size:13px; line-height:25px;">
+                                    联系电话：<?php echo(mysql_result($result,$i,"dianhua"));?>&nbsp;&nbsp;QQ：<?php echo(mysql_result($result,$i,"qq"));?>&nbsp;&nbsp;邮箱：<?php echo(mysql_result($result,$i,"email"));?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="border:1px #cbc2bc solid; padding:10px; line-height:25px; color:#7e7d7c; background:#eeedeb; font-size:13px; margin-bottom:10px;">
+                                        <?php echo(mysql_result($result,$i,"content"));?>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="font-size:1px; height:1px; border-bottom:1px solid #d7cfcb; margin-top:10px;"></div>
+
+                        <!--留言列表 -->
+                    </div>
+                    <div style="margin:25px; height:20px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="18px" background="yangshi/contentbg3.jpg">&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    <!--右边 -->
+    <!--内容 -->
+</div>
+<include file="include/public_fooer"/>

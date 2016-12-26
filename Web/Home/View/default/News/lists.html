@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新闻资讯列表--石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+    <include file="include/public_style"/>
+    <style>
+        .row{padding: 0px;margin: 0px;}
+    </style>
+</head>
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<include file="include/public_url_address"/>
+<div class="row" style="width: 1200px;padding: 0px; margin: 0 auto;">
+    <include file="include/public_type_search"/>
+    <!--页面body部分 -->
+    <div class="row">
+        <div style="height:10px;"></div>
+        <div class="row" style="padding: 0px;">
+            <div style="float:left; width:895px;">
+                <div class="row">
+                    <!--列表选择部分 -->
+                    <div style=" border:1px solid #dbdbdb; border-top:1px solid #F00; background:#fafafa;">
+                        <style>
+                            .order_a{float:left; line-height:26px; display:block; border:1px solid #CCC; padding:0px 6px 0px 6px; margin-top:8px; text-decoration:none; color:#333}
+                        </style>
+                        <span style="float:left; line-height:42px; margin-left:15px; display:block;">排序方式：</span>
+                        <a href="" class="order_a" rel="id desc">默认排序</a>
+                        <a href="" class="order_a" rel="price asc">按价格（低->高）</a>
+                        <a href="" class="order_a" rel="price desc">按价格（高->低）</a>
+                        <a href="" class="order_a" rel="updatetime desc">按发布时间</a>
+                        <a href="" class="order_a" rel="look_num desc">点击量</a>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <!--列表选择部分 -->
+                    <!--列表部分 -->
+                    <div>
+                        <input type="hidden" value="<php>echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];</php>" id="list_url"/>
+                        <foreach name="data" item="vo">
+                            <a class="list1" href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td rowspan="2" width="150"><img src="{$vo.pic_name}" width="131" height="84"></td>
+                                    <td colspan="2" style=" height:40px; overflow:hidden; font-size:13px; color:#999;">
+                                        <div style="color:#0052a9;line-height:40px;font-weight:bold; font-size:16px; margin-right:25px; float:left;">{$vo.name}</div>
+                                        <div style='padding:7px; float:left;'>企业用户：</div>
+                                        <div style='line-height:25px; font-size:12px; padding:0px 10px 0px 10px; float:left; border:#066 1px solid; background:#FCF; text-align:center; margin-right:15px;'>企业名</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="line-height:25px; color:#636363; font-size:13px;text-indent:2em; height:50px; overflow:hidden; margin:6px 30px 6px 0px;">信息简介。</div>
+                                    </td>
+                                    <td width="170" style="font-size:13px; color:#999;">
+                                        发布时间：<span style="color:#f9792c; font-size:16px; font-weight:bold; margin-right:30px;">{$vo.updatetime|date="Y-m-d H:i:s",###}</span><br>
+                                        点击次数：<span style="color:#f9792c; font-size:16px; font-weight:bold; margin-right:30px;">{$vo.look_num}</span></td>
+                                </tr>
+                            </table>
+                            </a>
+                        </foreach>
+                    </div>
+                    <!--列表部分 -->
+                    <!--页码部分 -->
+                    <include file="include/public_list_yema"/>
+                    <!--页码部分 -->
+                </div>
+            </div>
+
+            <div style="float:right; width:285px;">
+                <!--图片推荐产品 -->
+                <include file="include/public_list_hotpic"/>
+                <!--图片推荐产品 -->
+                <!--右侧最热部分 -->
+                <include file="include/public_list_hot"/>
+                <!--右侧最热部分 -->
+                <!--右侧推荐部分 -->
+                <include file="include/public_list_tuijian"/>
+                <!--右侧推荐部分 -->
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>
+<!--页面body部分 -->
+<include file="include/public_fooer"/>
+</body>
+</html>

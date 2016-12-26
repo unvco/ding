@@ -1,0 +1,151 @@
+<form id="myInfo_form" class="form" action="{:U('myInfo')}" method="Post">
+	<style>
+		.myInfo-content { width: 800px;}
+		.con-div{margin-bottom: 10px;}
+		.con-left {text-align: right;font-weight: 700;}
+	</style>
+	<div class="myInfo-content">
+		<input name="id" value="{$userInfo.id}" type="hidden">
+		<div class="row con-div">
+			<div class="col-md-2 con-left">用户名：</div>
+			<div class="col-md-4"><input type="text" class="form-control" name="name" value="{$userInfo.name}"/></div>
+
+			<div class="col-md-2 con-left">真实姓名：</div>
+			<div class="col-md-4"><input type="text" class="form-control" name="truename" value="{$userInfo.truename}"/></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">角色：</div>
+			<div class="col-md-4">{$userInfo.type}</div>
+
+			<div class="col-md-2 con-left">所在公司：</div>
+			<div class="col-md-4"><input type="text" class="form-control" name="company" value="{$userInfo.company}"/></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">身份证：</div>
+			<div class="col-md-4"><input type="text" class="form-control" name="idcard" value="{$userInfo.idcard}"/></div>
+
+			<div class="col-md-2 con-left">邮箱：</div>
+			<div class="col-md-4"><input type="text" class="form-control" name="email" value="{$userInfo.email}"/></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">性别：</div>
+			<div class="col-md-4">
+				<select name="sex" class="form-control" id="sex">
+					<option value="">请选择</option>
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
+			</div>
+
+			<div class="col-md-2 con-left">生日：</div>
+			<div class="col-md-4"><input onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="form-control" id="birthday" name="birthday" type="text" value="{$userInfo.birthday|date='Y-m-d',###}"></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">QQ：</div>
+			<div class="col-md-4"><input type="text" class="form-control" name="qq" value="{$userInfo.qq}"/></div>
+
+			<div class="col-md-2 con-left">手机号：</div>
+			<div class="col-md-4"><input type="text" class="form-control" name="mobile" value="{$userInfo.mobile}"/></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">地址：</div>
+			<div class="col-md-2">
+				<div class="input-group">
+					<select id="sheng" name="province"  class="form-control" style="padding: 0;"></select>
+					<span class="input-group-addon">省</span>
+				</div>
+			</div>
+			<div class="col-md-2 con-left">
+				<div class="input-group">
+					<select id="shi" name="city" class="form-control" style="padding: 0;"></select>
+					<span class="input-group-addon">市</span>
+				</div>
+			</div>
+			<div class="col-md-2 con-left">
+				<div class="input-group">
+					<select id="xian" name="country"  class="form-control" style="padding: 0;"></select>
+					<span class="input-group-addon">县</span>
+				</div>
+			</div>
+			<div class="col-md-2 con-left">
+				<select id="xiang" name="street"  class="form-control" style="padding: 0;"></select>
+			</div>
+			<!--地址选择控件-->
+			<script type="text/javascript" src="__ROOT__/style/address1/GlobalProvinces_main.js"></script>
+			<script type="text/javascript" src="__ROOT__/style/address1/GlobalProvinces_extend.js"></script>
+			<script type="text/javascript" src="__ROOT__/style/address1/initLocation.js"></script>
+			<!--地址选择控件-->
+			<script type="text/javascript">
+				$(function(){
+					initLocation({sheng_val:"{$userInfo['address'][0]}",shi_val:"{$userInfo['address'][1]}",xian_val:"{$userInfo['address'][2]}",xiang_val:"{$userInfo['address'][3]}"});
+				})
+			</script>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">详细地址：</div>
+			<div class="col-md-10"><input type="text" class="form-control" name="address_detail" value="{$userInfo.address_detail}"/></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">擅长空间：</div>
+			<div class="col-md-10"><textarea type="text" class="form-control" name="work_mark">{$userInfo.work_mark}</textarea></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">自我介绍：</div>
+			<div class="col-md-10"><textarea type="text" class="form-control" name="introduce" rows="5">{$userInfo.introduce}</textarea></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">地图定位：</div>
+			<div class="col-md-10">
+				<div style="line-height: 25px; color: #999999;">请正确定位您的坐标,以方便周边搜索</div>
+				<div id="container" style="width: 100%; height:400px;"></div>
+				<input type="hidden" name="locx" id="locx" value="{$userInfo.locx}"/>
+				<input type="hidden" name="locy" id="locy" value="{$userInfo.locy}"/>
+			</div>
+			<script type="text/javascript">
+				var locx=$('#locx').val();
+				var locy=$('#locy').val();
+				var map = new BMap.Map("container");
+				var point = new BMap.Point(locx,locy );//这里可以直接将用户的经纬度作为用户的变量
+				map.centerAndZoom(point, 12);//地图的放大倍数
+				map.enableScrollWheelZoom(true);
+				//放大插件
+				var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+				var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+				var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}); //右上角
+				map.addControl(top_left_control);
+				map.addControl(top_left_navigation);
+				map.addControl(top_right_navigation);
+				var marker = new BMap.Marker(point);        // 创建标注
+				map.addOverlay(marker);
+				//设置标注可以拖曳
+				marker.enableDragging();
+				marker.addEventListener("dragend", function(e){
+					$('#locx').val(e.point.lng);
+					$('#locy').val(e.point.lat);
+				})
+			</script>
+		</div>
+		<div style="text-align: center;">
+			<input type="submit" class="btn btn-success" name="submit" value="保存">&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-primary" onclick="javascript:closeDlg();" value="取消">
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	datePicker('#birthday',true);
+	$('#sex').val('{$userInfo.sex}');
+	$('#myInfo_form').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			showSuccess(data.retData);
+			closeDlg();
+		}else{
+			showError(data.errMsg);
+		}
+	}
+	function checkForm(){
+
+
+	}
+</script>
+					

@@ -1,0 +1,126 @@
+<h2 class="contentTitle">后台导航管理（动作：<if condition="$info.id neq ''">修改<else />添加</if>）</h2>
+<form method="post" action="{:U('add')}" class="pageForm required-validate" onsubmit="return validateCallback(this, gotonewslist)">
+	<div class="pageFormContent" layoutH="115">
+		<dl class="nowrap">
+			<dt>父导航：</dt>
+			<dd>
+				<input type="hidden" name="orgLookup.id" value="{$info.fatherid}"/>
+				<input type="text" readonly="true" class="required" name="orgLookup.orgName" value="{$info.fatheridName}" suggestFields="orgNum,orgName" suggestUrl="" lookupGroup="orgLookup" />
+				<a class="btnLook" href="{:U('selectBack')}" lookupGroup="orgLookup">查找带回</a>
+			</dd>
+		</dl>
+		<dl class="nowrap" id="dl_admindaohang_name">
+			<dt>导航名称：</dt>
+			<dd>
+				<input name="Admin[name]" class="required" alt="" value="{$info.name}" type="text" style="width: 250px;">
+				<input type="hidden" name="Admin[id]" value="{$info.id}"/>
+			</dd>
+		</dl>
+		<dl class="nowrap" id="dl_admindaohang_isdir">
+			<dt>是否文件夹：</dt>
+			<dd>
+				<select name="Admin[isdir]" id="isdir">
+					<option value="0">是链接形式</option>
+					<option value="1">是文件夹形式</option>
+				</select>
+			</dd>
+		</dl>
+		<dl class="nowrap" id="dl_admindaohang_isdialog">
+			<dt>是否弹出窗：</dt>
+			<dd>
+				<select name="Admin[isdialog]" id="isdialog">
+					<option value="1">是弹出窗口</option>
+					<option value="0">是tab窗口</option>
+				</select>
+			</dd>
+		</dl>
+		<dl class="nowrap" id="dl_admindaohang_url">
+			<dt>链接地址：</dt>
+			<dd>
+				<input name="Admin[url]" alt="" value="{$info.url}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap" id="dl_admindaohang_rel">
+			<dt>窗口rel标签：</dt>
+			<dd>
+				<input name="Admin[rel]" alt="" value="{$info.rel}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap" id="dl_admindaohang_external">
+			<dt>是否frame包含：</dt>
+			<dd>
+				<select name="Admin[external]" id="external">
+					<option value="1">是通过frame包含</option>
+					<option value="0">通过ajax返回内容</option>
+				</select>
+			</dd>
+		</dl>
+		<dl class="nowrap" id="dl_admindaohang_width">
+			<dt>弹出窗宽度：</dt>
+			<dd>
+				<input name="Admin[width]" alt="" value="{$info.width}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap" id="dl_admindaohang_height">
+			<dt>弹出窗高度：</dt>
+			<dd>
+				<input name="Admin[height]" alt="" value="{$info.height}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+
+
+	</div>
+	
+	<div class="formBar">
+		<ul>
+			<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+			<li><div class="button"><div class="buttonContent"><button class="close" type="button">关闭</button></div></div></li>
+		</ul>
+	</div>  
+
+</form>
+<script language="JavaScript">
+	function gotonewslist(data){
+		dialogformcallback(data,'{:CONTROLLER_NAME}_Lists');
+	}
+
+
+	function isdialog_admindaohang(){
+		if($('#isdialog option:selected') .val()==1){
+			$("#dl_admindaohang_external").hide();
+			$("#dl_admindaohang_width").show();
+			$("#dl_admindaohang_height").show();
+		}else{
+			$("#dl_admindaohang_external").show();
+			$("#dl_admindaohang_width").hide();
+			$("#dl_admindaohang_height").hide();
+		}
+	}
+
+	$("#isdir").change(function(){
+		if($('#isdir option:selected') .val()==1){
+			$("#dl_admindaohang_isdialog").hide();
+			$("#dl_admindaohang_url").hide();
+			$("#dl_admindaohang_rel").hide();
+			isdialog_admindaohang();
+			$("#dl_admindaohang_width").hide();
+			$("#dl_admindaohang_height").hide();
+		}else{
+			$("#dl_admindaohang_isdialog").show();
+			$("#dl_admindaohang_url").show();
+			$("#dl_admindaohang_rel").show();
+			isdialog_admindaohang();
+		}
+	});
+
+	$("#dl_admindaohang_external").hide();
+
+	$("#isdialog").change(function(){
+		isdialog_admindaohang();
+	});
+
+	$("#isdir").val("{$info.isdir}");
+	$("#isdialog").val("{$info.isdialog}");
+	$("#external").val("{$info.external}");
+
+</script>

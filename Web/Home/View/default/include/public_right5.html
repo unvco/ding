@@ -1,0 +1,88 @@
+        <!--内容页右侧会员信息部分 -->
+        <div style="margin-bottom:15px;">
+           <a href="<?php echo($http_host);?>/u.php" target="_blank" style="display:block; width:210px; height:40px; background:url(tpls_img/bg21.jpg) no-repeat; margin:0 auto; text-align:center; font-size:20px; color:#FFF; line-height:38px; text-decoration:none;">发布文章</a>
+        </div>
+        <!--内容页右侧会员信息部分 -->
+                <!--右侧推荐部分 -->
+		<?php
+        //获取石材供应最热文章11篇
+        $sql_hot="SELECT * FROM ding_news WHERE bankuai='gongying' ORDER BY id ASC LIMIT 0 , 11";
+        $result_hot = mysql_query($sql_hot);
+        $num_result_hot=mysql_num_rows($result_hot);
+        //获取石材供应最热文章11篇
+        ?>
+        <div style="border:1px solid #dbdbdb;">
+        <div style="line-height:35px; font-size:18px; padding-left:5px; background:#fafafa; border-bottom:1px solid #dbdbdb;">产品推荐</div>
+        <div style="padding:10px;">
+          <div style="padding-bottom:10px; border-bottom:1px solid #dbdbdb; margin-bottom:8px;">
+             <div style="float:left;"><img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_hot,0,"pic_name"));?>" width="94" height="67" /></div>
+             <div style="float:left; width:130px; margin-left:10px; line-height:22px;">
+                <a href="<?php echo($http_host);?>/index.php/to/<?php echo($contentye);?>_<?php echo(mysql_result($result_hot,0,"id"));?>.html" target="_blank" style="font-size:14px; color:#039; display:block; height:22px; overflow:hidden;"><?php echo(mysql_result($result_hot,0,"name"));?></a>
+                <div style="height:22px; overflow:hidden;">价格：<span style="color:#C00;"><?php echo(mysql_result($result_hot,0,"jiage"));?></span>元/平方</div>
+                <div style="height:22px; overflow:hidden;">数量：<?php echo(mysql_result($result_hot,0,"shuliang"));?></div>
+             </div>
+             <div style="clear:both;"></div>
+          </div>
+          <?php 
+		  for($i=1;$i <=10;$i++){
+		  ?>
+          <a href="<?php echo($http_host);?>/index.php/to/<?php echo($contentye);?>_<?php echo(mysql_result($result_hot,$i,"id"));?>.html" target="_blank" style="line-height:25px;display:block; color:#333; height:25px; overflow:hidden;"><?php echo(mysql_result($result_hot,$i,"name"));?><span style="color:#999;font-size:12px;">(<?php echo(mysql_result($result_hot,$i,"jiage"));?>元/平方)</span></a>
+          <?php
+		  }
+		  ?>
+        </div>
+        </div>
+        <!--右侧推荐部分 -->
+                <!--右侧最热部分 -->
+        <div style="margin:10px 0px 10px 0px; border:1px solid #dfdfdf;">
+        <!--样式一选项卡动作 -->
+        <div style=" text-align:right;">
+          <div class="lou5_2_3_xuan1" ka="lou5_2_3_xuan1_dd1" onmouseover="ka1(this)" style="line-height:30px; padding:0px 10px 0px 10px; float:left;border-left:1px solid #dfdfdf;border-top:3px solid #d54f58; border-bottom:1px solid #ffffff;background:#FFF;">企业排行</div>
+          <div class="lou5_2_3_xuan1" ka="lou5_2_3_xuan1_dd2" onmouseover="ka1(this)" style="line-height:30px; padding:0px 10px 0px 10px; float:left;border-left:1px solid #dfdfdf; border-top:3px solid #f7f7f7; border-bottom:1px solid #dfdfdf;background:#f7f7f7;">大理石排行榜</div>
+          <a href="<?php echo($http_host);?>/index.php/to/list<?php echo("gongying");?>.html" target="_blank" style="display:block; color:#999; line-height:30px; padding:0px 10px 0px 10px; border-top:3px solid #f7f7f7; border-bottom:1px solid #dfdfdf; background:#f7f7f7;">更多>></a>
+        <div style="clear:both;"></div>
+        </div>
+        <div style="height:5px;"></div>
+        <div class="lou5_2_3_xuan1_yin" id="lou5_2_3_xuan1_dd1">
+           <?php
+       //获取石材供应最热文章11篇
+       $sql_hot="SELECT * FROM ding_news WHERE bankuai='gongying' ORDER BY id ASC LIMIT 0 , 11";
+       $result_hot = mysql_query($sql_hot);
+       $num_result_hot=mysql_num_rows($result_hot);
+	   for($i=0;$i <10;$i++){
+	   ?>
+           <a href="<?php echo($http_host);?>/index.php/to/<?php echo($contentye);?>_<?php echo(mysql_result($result_hot,$i,"id"));?>.html" target="_blank"><?php echo(mysql_result($result_hot,$i,"name"));?></a>
+       <?php }?>
+        </div>
+        <div class="lou5_2_3_xuan1_yin" id="lou5_2_3_xuan1_dd2" style="display:none;">
+           <?php
+       //获取石材供应最热文章11篇
+       $sql_dianji="SELECT * FROM ding_news WHERE bankuai='gongying' ORDER BY num ASC LIMIT 0 , 11";
+       $result_dianji = mysql_query($sql_dianji);
+       $num_result_dianji=mysql_num_rows($result_dianji);
+	   for($i=0;$i <10;$i++){
+	   ?>
+           <a href="<?php echo($http_host);?>/index.php/to/<?php echo($contentye);?>_<?php echo(mysql_result($result_dianji,$i,"id"));?>.html" target="_blank"><?php echo(mysql_result($result_dianji,$i,"name"));?></a>
+       <?php }?>
+        </div>
+        <!--样式一选项卡动作 -->
+        </div>
+        <!--右侧最热部分 -->
+        <!--活跃会员部分 -->
+        <div style="border-bottom:1px solid #dbdbdb; font-size:16px; font-weight:bold; line-height:30px; margin-top:10px; padding-left:20px;">活跃会员</div>
+        <div style="margin-bottom:15px;">
+        <?php
+        //获取石材供应最热文章11篇
+        $sql_hot_user="SELECT * FROM ding_user ORDER BY id ASC LIMIT 0 , 16";
+        $result_hot_user = mysql_query($sql_hot_user);
+        $num_result_hot_user=mysql_num_rows($result_hot_user);
+	    for($i=0;$i <16;$i++){
+	    ?>
+        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_hot_user,$i,"id"));?>.html" target="_blank" style="margin:10px 0px 0px 6px; text-align:center; float:left; display:block;">
+          <img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_hot_user,$i,"touxiang"));?>" width="55" height="50" style="border:1px solid #dbdbdb; padding:1px; display:block" />
+          <span style="display:block; line-height:25px; overflow:hidden; width:55px; color:#333; height:25px;"><?php echo(mysql_result($result_hot_user,$i,"name"));?></span>
+        </a>
+        <?php }?>
+        <div style="clear:both;"></div>
+        </div>
+        <!--活跃会员部分 -->

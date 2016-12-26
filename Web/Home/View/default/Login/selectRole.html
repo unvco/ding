@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>石材吧登陆界面</title>
+    <include file="include/public_style"/>
+</head>
+<style>
+    .body{ background: url("__ROOT__/style/web/default/login/register_bg.jpg") no-repeat; background-size: 100%;}
+    .login_div{ width: 520px; margin: 0 auto;}
+    .login_div_2{box-shadow: 8px 8px 10px #000; margin-top:90px; background: #f2f2f2; padding: 30px 50px;}
+    .login_div_2 a{width: 150px; height: 150px; margin: 25px 25px; font-size: 45px; color: #ffffff;}
+</style>
+<body class="body">
+<div class="login_div">
+    <div class="login_div_2">
+        <a href="{:U('Space/index/index')}" class="btn btn-success">普通<br>用户</a>
+        <a href="{:U('registerCompany')}" class="btn btn-success">企业<br>用户</a>
+        <a href="{:U('registerSheJiShi')}" class="btn btn-success">设计<br>师</a>
+        <a href="{:U('registerJingJiRen')}" class="btn btn-success">经纪<br>人</a>
+    </div>
+</div>
+</body>
+</html>

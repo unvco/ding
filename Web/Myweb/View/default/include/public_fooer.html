@@ -1,0 +1,42 @@
+<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
+    <!--页尾 -->
+    <div class="fooer"></div>
+    <div class="fooer1">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" height="49px"><tr>
+            <td style="color:#FFF;">
+                <span style="display:block; float:left; margin-left:50px; color:#ffffff;"><a href="" target="_blank" style="color:#FFF;">关于我们</a>&nbsp;&nbsp;|</span>
+                <span style="display:block; float:left; margin-left:10px; color:#ffffff;"><a href="" target="_blank" style="color:#FFF;">我要留言</a>&nbsp;&nbsp;|</span>
+            </td>
+            <td width="300" style="color:#FFF;"><a href="{:U('index',array('userid'=>$userid))}" target="_blank" style="color:#FFF;">进入|{$companyInfo['name']}</a></td>
+        </tr></table>
+    </div>
+    <!--广告 -->
+    <div>
+        <if condition="$enableEdit eq 1">
+            <div style=" padding:0px 15px 0px 15px; color:#FFF; background:#F00; line-height:25px; text-align:center; position:absolute;" class="qiye_ad3" onclick="jBox.open('get:{:U('Edit/setPicByAction',array('action'=>'default编辑尾部广告'))}', '编辑尾部广告', 200,110, { buttons: {} });">编辑尾部广告</div>
+        </if>
+        <if condition="$userConfigInfo['default编辑尾部广告']">
+            <img src="{$userConfigInfo['default编辑尾部广告']}" width="1000">
+            <else/>
+            <img src="__ROOT__/uploads/3.jpg" width="1000">
+        </if>
+    </div>
+    <!--广告 -->
+    <!--页尾 -->
+</td></tr></table>
+<script>
+    var speed=30//速度数值越大速度越慢
+    butong_net_right2.innerHTML=butong_net_right1.innerHTML
+    function Marquee4(){
+        if(butong_net_right.scrollLeft<=0)
+            butong_net_right.scrollLeft+=butong_net_right2.offsetWidth
+        else{
+            butong_net_right.scrollLeft--
+        }
+    }
+    var MyMar4=setInterval(Marquee4,speed)
+    butong_net_right.onmouseover=function() {clearInterval(MyMar4)}
+    butong_net_right.onmouseout=function() {MyMar4=setInterval(Marquee4,speed)}
+</script>　
+</body>
+</html>

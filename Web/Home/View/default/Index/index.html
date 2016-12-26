@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+    <include file="include/public_style"/>
+</head>
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_logo1"/>
+
+<div style="height:10px;"></div>
+
+<!--分类选择部分 -->
+<table width="1200" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#f55261"><tr><td height="50" style="color:#FFF;">
+    <span style="font-weight:bold; margin-left:10px;">用户列表条件搜索：</span>
+    是否审核：<select id="option_user_shenhe" name="" style="border:#699 1px solid; line-height:30px; height:32px; padding-left:8px;">
+    <option value="不限制">不限制</option>
+    <option value="1">审核</option>
+    <option value="0">未审核</option>
+</select>
+    是否vip：<select id="option_user_vip" name="" style="border:#699 1px solid; line-height:30px; height:32px; padding-left:8px;">
+    <option value="不限制">不限制</option>
+    <option value="1">是vip</option>
+    <option value="0">不是vip</option>
+</select>
+    <!--类型标准选项框 -->
+    企业类型：
+    <select id="option_user_leixing" name="" style="border:#699 1px solid; line-height:30px; height:32px; padding-left:8px;">
+        <option value="请选择">请选择</option>
+        <volist name="company_type" id="vo">
+            <option value="{$vo.id}">--{$vo.name}</option>
+        </volist>
+    </select>
+    <!--类型标准选项框 -->
+
+    <!--类型标准选项框 -->
+    用户地址：
+    <select id="option_user_dizhi" name="" style="border:#699 1px solid; line-height:30px; height:32px; padding-left:8px;">
+        <option value="请选择">请选择</option>
+        <volist name="config_dizhi" id="vo">
+            <option value="{$vo.id}">--{$vo.name}</option>
+        </volist>
+    </select>
+    <!--类型标准选项框 -->
+    <span id="option_search" style="line-height:22px; padding:6px;background:#fff; margin-left:20px; color:#F00;">确定</span>
+    <!--隐藏的搜索条件-->
+    <input id="search_search" type="hidden" value="" />
+    <input id="search_user_leixing" type="hidden" value="" />
+    <input id="search_user_dizhi" type="hidden" value="" />
+    <input id="search_user_vip" type="hidden" value="" />
+    <input id="search_user_shenhe" type="hidden" value="" />
+    <!--隐藏的搜索条件-->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var reg=new RegExp("%","g"); //创建正则RegExp对象
+            $("#option_user_shenhe").val("");
+            $("#option_user_vip").val("");
+            $("#option_user_leixing").val("");
+            $("#option_user_dizhi").val("");
+            $("#option_search").click(function(){
+                var option_user_shenhe=$("#option_user_shenhe option:selected").val();
+                var option_user_vip=$("#option_user_vip option:selected").val();
+                var option_user_leixing=encodeURIComponent($("#option_user_leixing option:selected").val()).replace(reg,"@");
+                var option_user_dizhi=encodeURIComponent($("#option_user_dizhi option:selected").val()).replace(reg,"@");
+
+                var search_search=encodeURIComponent($("#search_search").val()).replace(reg,"@");
+                var search_option_total="";
+
+                if(search_search!=""){search_option_total=search_option_total+"/search/"+search_search;}
+                if($("#option_user_leixing option:selected").val()!="请选择"){search_option_total=search_option_total+"/user_leixing/"+option_user_leixing;}
+                if($("#option_user_dizhi option:selected").val()!="请选择"){search_option_total=search_option_total+"/user_dizhi/"+option_user_dizhi;}
+                if(option_user_vip!="不限制"){search_option_total=search_option_total+"/user_vip/"+option_user_vip;}
+                if(option_user_shenhe!="不限制"){search_option_total=search_option_total+"/user_shenhe/"+option_user_shenhe;}
+
+                if(search_option_total==""){location.href="<?php echo($http_host);?>/index.php/to/listuser.html";}
+                else{location.href="<?php echo($http_host);?>/index.php/to/listuser"+search_option_total+".html";}
+            });
+        });
+    </script>
+</td></tr></table>
+<!--分类选择部分 -->
+
+
+
+
+<!--广告部分 -->
+<div style=" margin:10px 0px 10px 0px; text-align:center;"><a href="{:U('User/toJingjiren')}" target="_blank"><img style="border:0px;" src="__ROOT__/style/web/default/img/ad12.jpg" width="1200" /></a></div>
+<!--广告部分 -->
+
+
+<!--页面body部分 -->
+<!--首页第一部分 -->
+<table width="1200" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td width="310">
+    <div class="fen1_1">
+        <!--样式一选项卡动作 -->
+        <div style=" text-align:right;">
+            <div class="fen1_2_3_xuan1" ka="fen1_2_3_xuan1_dd1" onmouseover="ka1(this)" style="border-top:3px solid #d54f58; border-bottom:1px solid #ffffff;background:#FFF;">企业排行</div>
+            <div class="fen1_2_3_xuan1" ka="fen1_2_3_xuan1_dd2" onmouseover="ka1(this)" style=" border-top:3px solid #f7f7f7; border-bottom:1px solid #dfdfdf;background:#f7f7f7;">大理石排行榜</div>
+            <div class="fen1_2_3_1">更多>></div>
+            <div style="clear:both;"></div>
+        </div>
+        <div style="height:5px;"></div>
+        <div class="fen1_2_3_xuan1_yin" id="fen1_2_3_xuan1_dd1">
+
+            <a href="" target="_blank">企业名</a>
+
+        </div>
+        <div class="fen1_2_3_xuan1_yin" id="fen1_2_3_xuan1_dd2" style="display:none;">
+
+            <a href="" target="_blank">大理石排行榜</a>
+
+        </div>
+        <!--样式一选项卡动作 -->
+    </div>
+    <div>
+        <div class="fen1_1_1"><img src="" width="140" height="110" /><a href="" target="_blank">点点滴滴</a></div>
+        <div class="fen1_1_1"><img src="" width="140" height="110" /><a href="" target="_blank">萨达萨达</a></div>
+        <div style="clear:both;"></div>
+    </div>
+</td>
+    <td width="7" style="font-size:1px;">&nbsp;</td>
+    <td>
+        <!--一级总分类幻灯片 -->
+        <script language="javascript">
+            $(document).ready(function(){
+                $('.fen1_4').mouseover(function(){
+                    var bg1=$(this).attr("bg1");
+                    var bg2=$(this).attr("bg2");
+                    var z="#fen1_4"+$(this).attr("dd");
+                    $(".fen1_4").css("background","url("+bg1+") repeat-x bottom");
+                    $(".fen1_4").css("color","#000000");
+                    $(this).css("background","url("+bg2+") repeat-x center bottom");
+                    $(this).css("color","#ffffff");
+                    $(".fen1_div4").hide();
+                    $(z).show();
+                });
+            });
+        </script>
+        <div class="fen1_div4" id="fen1_4a" style="display:none;"><img src="__ROOT__/style/web/default/img/ad_shouye_1.jpg?d=2" width="608" height="160" /></div>
+        <div class="fen1_div4" id="fen1_4b" style=""><img src="__ROOT__/style/web/default/img/ad_shouye_2.jpg?d=2" width="608" height="160" /></div>
+        <div class="fen1_div4" id="fen1_4c" style="display:none;"><img src="__ROOT__/style/web/default/img/ad_shouye_3.jpg?d=2" width="608" height="160" /></div>
+        <div class="fen1_div4" id="fen1_4d" style="display:none;"><img src="__ROOT__/style/web/default/img/ad_shouye_4.jpg?d=2" width="608" height="160" /></div>
+        <div class="fen1_div4" id="fen1_4e" style="display:none;"><img src="__ROOT__/style/web/default/img/ad_shouye_5.jpg?d=2" width="608" height="160" /></div>
+        <div class="fen1_div4" id="fen1_4f" style="display:none;"><img src="__ROOT__/style/web/default/img/ad_shouye_6.jpg?d=2" width="608" height="160" /></div>
+        <table width="100%" border="1" cellspacing="0" cellpadding="0" bordercolor="#bcc2c0"><tr>
+            <td class="fen1_4" dd="a" bg1="__ROOT__/style/web/default/img/ad_shouye_bg1.jpg" bg2="__ROOT__/style/web/default/img/ad_shouye_bg2.jpg" align="center" style=" line-height:22px; background:url(__ROOT__/style/web/default/img/ad_shouye_bg1.jpg);"><a href="<?php echo($http_host);?>/space.php/to/5.html">宗艺石材</a></td>
+            <td class="fen1_4" dd="b" bg1="__ROOT__/style/web/default/img/ad_shouye_bg1.jpg" bg2="__ROOT__/style/web/default/img/ad_shouye_bg2.jpg" align="center" style=" line-height:22px; background:url(__ROOT__/style/web/default/img/ad_shouye_bg2.jpg); color:#FFF;"><a href="<?php echo($http_host);?>/space.php/to/3.html">凌语石材装饰</a></td>
+            <td class="fen1_4" dd="c" bg1="__ROOT__/style/web/default/img/ad_shouye_bg1.jpg" bg2="__ROOT__/style/web/default/img/ad_shouye_bg2.jpg" align="center" style=" line-height:22px; background:url(__ROOT__/style/web/default/img/ad_shouye_bg1.jpg);"><a href="<?php echo($http_host);?>/space.php/to/4.html">世纪图腾</a></td>
+            <td class="fen1_4" dd="d" bg1="__ROOT__/style/web/default/img/ad_shouye_bg1.jpg" bg2="__ROOT__/style/web/default/img/ad_shouye_bg2.jpg" align="center" style=" line-height:22px; background:url(__ROOT__/style/web/default/img/ad_shouye_bg1.jpg);"><a href="<?php echo($http_host);?>/space.php/to/6.html">福鼎市腾飞</a></td>
+            <td class="fen1_4" dd="e" bg1="__ROOT__/style/web/default/img/ad_shouye_bg1.jpg" bg2="__ROOT__/style/web/default/img/ad_shouye_bg2.jpg" align="center" style=" line-height:22px; background:url(__ROOT__/style/web/default/img/ad_shouye_bg1.jpg);"><a href="<?php echo($http_host);?>/space.php/to/3.html">凌语石材</a></td>
+            <td class="fen1_4" dd="f" bg1="__ROOT__/style/web/default/img/ad_shouye_bg1.jpg" bg2="__ROOT__/style/web/default/img/ad_shouye_bg2.jpg" align="center" style=" line-height:22px; background:url(__ROOT__/style/web/default/img/ad_shouye_bg1.jpg);"><a href="<?php echo($http_host);?>/space.php/to/3.html">凌语石材</a></td>
+        </tr>
+        </table>
+        <!--一级总分类幻灯片 -->
+        <!--一级总分类中间新闻 -->
+        <div class="fen1_5">
+            <div style="height:10px;"></div>
+            <div class="fen1_5_1" style="height:35px; overflow:hidden;">不是都双方的放到</div>
+            <div class="fen1_5_2">　
+                　多少第三方第三方第三方多少...
+            </div>
+        </div>
+        <!--一级总分类中间新闻 -->
+    </td>
+    <td width="7" style="font-size:1px;">&nbsp;</td>
+    <td width="260">
+        <!--一级总分类右边登录 -->
+        <div style="background:url(__ROOT__/style/web/default/img/shouye_bg_2.jpg); height:36px;">
+            <a style="display:block; width:70px; float:left; height:36px;" href="{:U('Login/register')}"></a><a style="display:block; width:70px; float:left; height:36px;" onclick="jBox.open('iframe:{:U('Login/login')}', '用户登录', 500, 400);"></a>
+            <div style="clear:both;"></div>
+        </div>
+        <!--一级总分类右边登录 -->
+        <div class="fen1_7">
+            <div class="fen1_7_1">目前正有<span>11945</span>名创业者在线找项目今日新增意向加盟者<span>3410</span>人/次 </div>
+            <div style="clear:both;"></div>
+            <div class="fen1_7_2">
+                <div class="fen1_7_2_1">已有 <span>284</span> 家项目通过资质核实</div>
+                <div class="fen1_7_2_2">加盟</div>
+            </div>
+            <div class="fen1_7_2">
+                <div class="fen1_7_2_1">已有 <span>284</span> 家项目通过资质核实</div>
+                <div class="fen1_7_2_2">加盟</div>
+            </div>
+            <div class="fen1_7_2">
+                <div class="fen1_7_2_1">已有 <span>284</span> 家项目通过资质核实</div>
+                <div class="fen1_7_2_2">加盟</div>
+            </div>
+            <div class="fen1_7_2">
+                <div class="fen1_7_2_1">已有 <span>284</span> 家项目通过资质核实</div>
+            </div>
+            <div class="fen1_7_2">
+                <div class="fen1_7_2_1">已有 <span>284</span> 家项目通过资质核实</div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <!--一级总分类右边广告区 -->
+        <div class="fen1_8"><img src="__ROOT__/style/web/default/img/ad_shouye_7.jpg" width="259" height="60" /></div>
+        <div class="fen1_8"><img src="__ROOT__/style/web/default/img/ad_shouye_7.jpg" width="259" height="60" /></div>
+        <div class="fen1_8"><img src="__ROOT__/style/web/default/img/ad_shouye_7.jpg" width="259" height="60" /></div>
+        <!--一级总分类右边广告区 -->
+    </td></tr></table>
+<!--首页第一部分 -->
+
+
+
+<!--广告部分 -->
+<div style=" margin:10px 0px 10px 0px; text-align:center;"><img src="__ROOT__/style/web/default/img/ad_shejishi.jpg" width="1200" /></div>
+<!--广告部分 -->
+
+
+
+<!--首页第二部分 -->
+<table width="1200" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td colspan="3">
+            <div class="fen2_3_1">
+                <span>石材企业</span>
+                <div class="fen2_3_1_1" ka="fen2_3_1_1_dd1" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">制造商</div>
+                <div class="fen2_3_1_2">|</div>
+                <div class="fen2_3_1_1" ka="fen2_3_1_1_dd2" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4_1.jpg) no-repeat center bottom;">贸易商</div>
+                <div class="fen2_3_1_2">|</div>
+                <div class="fen2_3_1_1" ka="fen2_3_1_1_dd3" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">代理商</div>
+                <div class="fen2_3_1_2">|</div>
+                <div class="fen2_3_1_1" ka="fen2_3_1_1_dd4" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">采购办事处</div>
+                <div class="fen2_3_1_2">|</div>
+                <div class="fen2_3_1_1" ka="fen2_3_1_1_dd5" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">分销商</div>
+                <div class="fen2_3_1_2">|</div>
+                <div class="fen2_3_1_1" ka="fen2_3_1_1_dd6" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">其他</div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="200">
+            <div style="height:10px;"></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E5@8C@97@E4@BA@AC@E5@B8@82.html">北京市</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E5@A4@A9@E6@B4@A5@E5@B8@82.html">天津市</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E6@B2@B3@E5@8C@97@E7@9C@81.html">河北省</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E5@B1@B1@E8@A5@BF@E7@9C@81.html">山西省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E5@86@85@E8@92@99@E5@8F@A4.html">内蒙古</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E8@BE@BD@E5@AE@81@E7@9C@81.html">辽宁省</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E5@90@89@E6@9E@97@E7@9C@81.html">吉林省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E9@BB@91@E9@BE@99@E6@B1@9F@E7@9C@81.html">黑龙江</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E4@B8@8A@E6@B5@B7@E5@B8@82.html">上海市</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E6@B1@9F@E8@8B@8F@E7@9C@81.html">江苏省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E6@B5@99@E6@B1@9F@E7@9C@81.html">浙江省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E5@AE@89@E5@BE@BD@E7@9C@81.html">安徽省</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E7@A6@8F@E5@BB@BA@E7@9C@81.html">福建省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E6@B1@9F@E8@A5@BF@E7@9C@81.html">江西省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E5@B1@B1@E4@B8@9C@E7@9C@81.html">山东省</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E6@B2@B3@E5@8D@97@E7@9C@81.html">河南省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E6@B9@96@E5@8C@97@E7@9C@81.html">河北省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E5@B9@BF@E4@B8@9C@E7@9C@81.html">广东省</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E5@B9@BF@E8@A5@BF.html">广西</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E6@B5@B7@E5@8D@97@E7@9C@81.html">海南省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E9@87@8D@E5@BA@86@E5@B8@82.html">重庆省</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E5@9B@9B@E5@B7@9D@E7@9C@81.html">四川省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E8@B4@B5@E5@B7@9E@E7@9C@81.html">贵州省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E4@BA@91@E5@8D@97@E7@9C@81.html">云南省</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E8@A5@BF@E8@97@8F.html">西藏</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E9@99@95@E8@A5@BF@E7@9C@81.html">陕西省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E7@94@98@E8@82@83@E7@9C@81.html">甘肃省</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E9@9D@92@E6@B5@B7@E7@9C@81.html">青海省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E5@AE@81@E5@A4@8F.html">宁夏</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E6@96@B0@E7@96@86.html">新疆</a></div>
+            <div class="fen2_3_2"><a href="<?php echo($http_host);?>/index.php/to/listqiye/user_dizhi/@E5@8F@B0@E6@B9@BE@E7@9C@81.html">台湾省</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E9@A6@99@E6@B8@AF.html">香港</a><span>|</span><a href="/index.php/to/listqiye/user_dizhi/@E6@BE@B3@E9@97@A8.html">澳门</a></div>
+            <div style="height:10px;"></div>
+            <div class="fen2_3_3">
+                <div style="clear:both"></div>
+                <span>看石展</span>
+                <a href="{:U('Zhanhui/lists')}">更多>></a>
+                <div style="clear:both"></div>
+            </div>
+            <div class="fen2_3_4"><div style="height:25px; color:#333; overflow:hidden;"><span>[2012-3-3]</span>sadsadsads</div><div>截止2013-2-2号结束</div><a href="" target="_blank">了解详情</a></div>
+        </td>
+        <td width="700">
+            <div class="fen2_3_1_1_yin" id="fen2_3_1_1_dd1" style="display:none;">
+
+                <div class="fen2_2">
+                    <div class="fen2_2_1">
+                        <img src="" width="204" height="137" />
+                        <a style="color:#FFF;" href="" target="_blank" class="fen2_2_1_1">企业名字</a>
+                        <div style="color:#e6024f; color:#000;"><b>地址</b>&nbsp;&nbsp;<span></span></div>
+                        <a href="" target="_blank" class="fen2_2_1_2">我要联系</a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen2_3_1_1_yin" id="fen2_3_1_1_dd2">
+
+                <div class="fen2_2">
+                    <div class="fen2_2_1">
+                        <img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_a_2,$i,"touxiang"));?>" width="204" height="137" />
+                        <a style="color:#FFF;" href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_2,$i,"id"));?>.html" target="_blank" class="fen2_2_1_1"><?php echo(mysql_result($result_a_2,$i,"qiye_name"));?></a>
+                        <div style="color:#e6024f; color:#000;"><b><?php echo(mysql_result($result_a_2,$i,"dizhi"));?></b>&nbsp;&nbsp;<span></span></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_2,$i,"id"));?>.html" target="_blank" class="fen2_2_1_2">我要联系</a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen2_3_1_1_yin" id="fen2_3_1_1_dd3" style="display:none;">
+
+                <div class="fen2_2">
+                    <div class="fen2_2_1">
+                        <img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_a_3,$i,"touxiang"));?>" width="204" height="137" />
+                        <a style="color:#FFF;" href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_3,$i,"id"));?>.html" target="_blank" class="fen2_2_1_1"><?php echo(mysql_result($result_a_3,$i,"qiye_name"));?></a>
+                        <div style="color:#e6024f; color:#000;"><b><?php echo(mysql_result($result_a_3,$i,"dizhi"));?></b>&nbsp;&nbsp;<span></span></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_3,$i,"id"));?>.html" target="_blank" class="fen2_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen2_3_1_1_yin" id="fen2_3_1_1_dd4" style="display:none;">
+
+                <div class="fen2_2">
+                    <div class="fen2_2_1">
+                        <img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_a_4,$i,"touxiang"));?>" width="204" height="137" />
+                        <a style="color:#FFF;" href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_4,$i,"id"));?>.html" target="_blank" class="fen2_2_1_1"><?php echo(mysql_result($result_a_4,$i,"qiye_name"));?></a>
+                        <div style="color:#e6024f; color:#000;"><b><?php echo(mysql_result($result_a_4,$i,"dizhi"));?></b>&nbsp;&nbsp;<span></span></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_4,$i,"id"));?>.html" target="_blank" class="fen2_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen2_3_1_1_yin" id="fen2_3_1_1_dd5" style="display:none;">
+
+                <div class="fen2_2">
+                    <div class="fen2_2_1">
+                        <img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_a_5,$i,"touxiang"));?>" width="204" height="137" />
+                        <a style="color:#FFF;" href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_5,$i,"id"));?>.html" target="_blank" class="fen2_2_1_1"><?php echo(mysql_result($result_a_5,$i,"qiye_name"));?></a>
+                        <div style="color:#e6024f; color:#000;"><b><?php echo(mysql_result($result_a_5,$i,"dizhi"));?></b>&nbsp;&nbsp;<span></span></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_5,$i,"id"));?>.html" target="_blank" class="fen2_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen2_3_1_1_yin" id="fen2_3_1_1_dd6" style="display:none;">
+
+                <div class="fen2_2">
+                    <div class="fen2_2_1">
+                        <img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_a_6,$i,"touxiang"));?>" width="204" height="137" />
+                        <a style="color:#FFF;" href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_6,$i,"id"));?>.html" target="_blank" class="fen2_2_1_1"><?php echo(mysql_result($result_a_6,$i,"qiye_name"));?></a>
+                        <div style="color:#e6024f; color:#000;"><b><?php echo(mysql_result($result_a_6,$i,"dizhi"));?></b>&nbsp;&nbsp;<span></span></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_a_6,$i,"id"));?>.html" target="_blank" class="fen2_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+        </td>
+        <td width="300">
+            <div style="height:10px;"></div>
+            <a target="_blank" href="<?php echo($http_host);?>/space.php/to/54.html"><img style="border:0px;" src="__ROOT__/style/web/default/img/lituoshiye.jpg" width="299" /></a>
+            <a target="_blank" href="<?php echo($http_host);?>/space.php/to/54.html"><img style="border:0px;" src="__ROOT__/style/web/default/img/ad7.jpg" width="299" height="250" /></a>
+        </td>
+    </tr>
+</table>
+<!--首页第二部分 -->
+
+
+
+<!--广告部分 -->
+<div style=" margin:10px 0px 10px 0px; text-align:center;"><img src="__ROOT__/style/web/default/img/ad6.jpg" width="1200" height="56" /></div>
+<!--广告部分 -->
+
+
+
+<!--首页第三部分 -->
+
+<table width="1200" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td width="305">
+            <div class="fen3_4">
+                <a href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_3,0,"id"));?>.html" target="_blank" class="fen3_4_1"><img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_3,0,"pic_name"));?>&&w=300" width="292" height="230" style="border:0px;" /></a>
+                <div class="fen3_4_2"></div>
+                <div style="height:25px; overflow:hidden;">
+                    <a href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_3,0,"id"));?>.html" target="_blank" class="fen3_4_3"><?php echo(mysql_result($result_3,0,"name"));?></a><span>【<?php echo(mysql_result($result_user_3,0,"dizhi"));?>】</span>
+                </div>
+                <div class="fen3_4_4">参考价：<span><?php if(mysql_result($result_3,0,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_3,0,"jiage")."元");}?></span></div>
+                <div class="fen3_4_5">
+                    <div style="clear:both;"></div>
+                    <a href="<?php echo($http_host);?>/space.php/to/<?php echo($user_id_3);?>.html" target="_blank" class="fen3_4_6"><?php echo(mysql_result($result_user_3,0,"leixing"));?></a>
+                    <a class="fen3_4_7"><img src="__ROOT__/style/web/default/img/bg7.jpg" width="85" height="25" /></a>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+            <div class="fen3_5">
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <a>精装全套大理石10万起</a>
+                <div style="clear:both;"></div>
+            </div>
+        </td>
+        <td>
+            <div class="fen3_6">
+                <a href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_3,$i,"id"));?>.html" target="_blank" style="margin:4px; display:block;"><img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_3,$i,"pic_name"));?>&&w=300" width="275" height="180" style="border:0px;" /></a>
+                <div class="fen3_6_1"></div>
+                <div style="height:25px; overflow:hidden;">
+                    <a href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_3,$i,"id"));?>.html" target="_blank" class="fen3_6_2"><?php echo(mysql_result($result_3,$i,"name"));?></a><span>【<?php echo(mysql_result($result_user_3,0,"dizhi"));?>】</span>
+                </div>
+                <div class="fen3_6_3">参考价：<span><?php if(mysql_result($result_3,$i,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_3,$i,"jiage")."元");}?></span></div>
+                <div class="fen3_6_4">
+                    <div style="clear:both;"></div>
+                    <a href="<?php echo($http_host);?>/space.php/to/<?php echo($user_id_3);?>.html" target="_blank" class="fen3_6_4_1"><?php echo(mysql_result($result_user_3,0,"leixing"));?></a>
+                    <a class="fen3_6_4_2"><img src="__ROOT__/style/web/default/img/bg7.jpg" width="85" height="25" /></a>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<!--首页第三部分 -->
+
+
+
+<!--广告部分 -->
+<div style=" margin:10px 0px 10px 0px; text-align:center;"><img src="__ROOT__/style/web/default/img/ad6.jpg" width="1200" height="56" /></div>
+<!--广告部分 -->
+
+
+
+<!--首页第四部分 -->
+<table width="1200" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td colspan="3">
+            <div class="fen4_3_1">
+                <span>优质石材</span>
+                <div class="fen4_3_1_1" ka="fen4_3_1_1_dd1" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">荒料/石板</div>
+                <div class="fen4_3_1_2">|</div>
+                <div class="fen4_3_1_1" ka="fen4_3_1_1_dd2" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4_1.jpg) no-repeat center bottom;">建筑物配套</div>
+                <div class="fen4_3_1_2">|</div>
+                <div class="fen4_3_1_1" ka="fen4_3_1_1_dd3" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">石制家具</div>
+                <div class="fen4_3_1_2">|</div>
+                <div class="fen4_3_1_1" ka="fen4_3_1_1_dd4" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">石雕</div>
+                <div class="fen4_3_1_2">|</div>
+                <div class="fen4_3_1_1" ka="fen4_3_1_1_dd5" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">庭院产品</div>
+                <div class="fen4_3_1_2">|</div>
+                <div class="fen4_3_1_1" ka="fen4_3_1_1_dd6" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">环境石材</div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="200">
+            <div style="height:10px;"></div>
+            <div class="fen4_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen4_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen4_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen4_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen4_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen4_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen4_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div style="height:10px;"></div>
+            <div class="fen4_3_3">
+                <div style="clear:both"></div>
+                <span>看石展</span>
+                <a href="<?php echo($http_host);?>/index.php/to/listzhanhui.html">更多>></a>
+                <div style="clear:both"></div>
+            </div>
+            <div class="fen2_3_4"><div style="height:25px; color:#333; overflow:hidden;"><span>[<?php echo(mysql_result($result_zhanhui,1,"start_time"));?>]</span><?php echo(mysql_result($result_zhanhui,1,"name"));?></div><div>截止<?php echo(mysql_result($result_zhanhui,1,"stop_time"));?>号结束</div><a href="<?php echo($http_host);?>/index.php/to/content5_<?php echo(mysql_result($result_zhanhui,1,"id"));?>.html" target="_blank">了解详情</a></div>
+            <div class="fen2_3_4"><div style="height:25px; color:#333; overflow:hidden;"><span>[<?php echo(mysql_result($result_zhanhui,2,"start_time"));?>]</span><?php echo(mysql_result($result_zhanhui,2,"name"));?></div><div>截止<?php echo(mysql_result($result_zhanhui,2,"stop_time"));?>号结束</div><a href="<?php echo($http_host);?>/index.php/to/content5_<?php echo(mysql_result($result_zhanhui,2,"id"));?>.html" target="_blank">了解详情</a></div>
+            <div class="fen2_3_4"><div style="height:25px; color:#333; overflow:hidden;"><span>[<?php echo(mysql_result($result_zhanhui,3,"start_time"));?>]</span><?php echo(mysql_result($result_zhanhui,3,"name"));?></div><div>截止<?php echo(mysql_result($result_zhanhui,3,"stop_time"));?>号结束</div><a href="<?php echo($http_host);?>/index.php/to/content5_<?php echo(mysql_result($result_zhanhui,3,"id"));?>.html" target="_blank">了解详情</a></div>
+        </td>
+        <td width="700">
+            <div class="fen4_3_1_1_yin" id="fen4_3_1_1_dd1" style="display:none;">
+
+                <div class="fen4_2">
+                    <div class="fen4_2_1">
+                        <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_b_1,$i,"pic_name"));?>&&w=200" width="204" height="137" />
+                        <div style="height:25px; overflow:hidden;">
+                            <a style="color:#FFF;" href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_b_1,$i,"id"));?>.html" target="_blank" class="fen4_2_1_1"><?php echo(mysql_result($result_b_1,$i,"name"));?></a>
+                        </div>
+                        <div style="color:#e6024f; color:#000;"><b><?php if(mysql_result($result_b_1,$i,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_b_1,$i,"jiage")."元");}?></b>&nbsp;&nbsp;<span><?php echo(mysql_result($result_b_1,$i,"num"));?></span><b>人浏览</b></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_b_1,$i,"user_id"));?>.html" target="_blank" class="fen4_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen4_3_1_1_yin" id="fen4_3_1_1_dd2">
+
+                <div class="fen4_2">
+                    <div class="fen4_2_1">
+                        <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_b_2,$i,"pic_name"));?>&&w=200" width="204" height="137" />
+                        <div style="height:25px; overflow:hidden;">
+                            <a style="color:#FFF;" href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_b_2,$i,"id"));?>.html" target="_blank" class="fen4_2_1_1"><?php echo(mysql_result($result_b_2,$i,"name"));?></a>
+                        </div>
+                        <div style="color:#e6024f; color:#000;"><b><?php if(mysql_result($result_b_2,$i,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_b_2,$i,"jiage")."元");}?></b>&nbsp;&nbsp;<span><?php echo(mysql_result($result_b_2,$i,"num"));?></span><b>人浏览</b></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_b_2,$i,"user_id"));?>.html" target="_blank" class="fen4_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen4_3_1_1_yin" id="fen4_3_1_1_dd3" style="display:none;">
+
+                <div class="fen4_2">
+                    <div class="fen4_2_1">
+                        <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_b_3,$i,"pic_name"));?>&&w=200" width="204" height="137" />
+                        <div style="height:25px; overflow:hidden;">
+                            <a style="color:#FFF;" href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_b_3,$i,"id"));?>.html" target="_blank" class="fen4_2_1_1"><?php echo(mysql_result($result_b_3,$i,"name"));?></a>
+                        </div>
+                        <div style="color:#e6024f; color:#000;"><b><?php if(mysql_result($result_b_3,$i,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_b_3,$i,"jiage")."元");}?></b>&nbsp;&nbsp;<span><?php echo(mysql_result($result_b_3,$i,"num"));?></span><b>人浏览</b></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_b_3,$i,"user_id"));?>.html" target="_blank" class="fen4_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen4_3_1_1_yin" id="fen4_3_1_1_dd4" style="display:none;">
+
+                <div class="fen4_2">
+                    <div class="fen4_2_1">
+                        <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_b_4,$i,"pic_name"));?>&&w=200" width="204" height="137" />
+                        <div style="height:25px; overflow:hidden;">
+                            <a style="color:#FFF;" href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_b_4,$i,"id"));?>.html" target="_blank" class="fen4_2_1_1"><?php echo(mysql_result($result_b_4,$i,"name"));?></a>
+                        </div>
+                        <div style="color:#e6024f; color:#000;"><b><?php if(mysql_result($result_b_4,$i,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_b_4,$i,"jiage")."元");}?></b>&nbsp;&nbsp;<span><?php echo(mysql_result($result_b_4,$i,"num"));?></span><b>人浏览</b></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_b_4,$i,"user_id"));?>.html" target="_blank" class="fen4_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen4_3_1_1_yin" id="fen4_3_1_1_dd5" style="display:none;">
+
+                <div class="fen4_2">
+                    <div class="fen4_2_1">
+                        <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_b_5,$i,"pic_name"));?>&&w=200" width="204" height="137" />
+                        <div style="height:25px; overflow:hidden;">
+                            <a style="color:#FFF;" href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_b_5,$i,"id"));?>.html" target="_blank" class="fen4_2_1_1"><?php echo(mysql_result($result_b_5,$i,"name"));?></a>
+                        </div>
+                        <div style="color:#e6024f; color:#000;"><b><?php if(mysql_result($result_b_5,$i,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_b_5,$i,"jiage")."元");}?></b>&nbsp;&nbsp;<span><?php echo(mysql_result($result_b_5,$i,"num"));?></span><b>人浏览</b></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_b_5,$i,"user_id"));?>.html" target="_blank" class="fen4_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen4_3_1_1_yin" id="fen4_3_1_1_dd6" style="display:none;">
+
+                <div class="fen4_2">
+                    <div class="fen4_2_1">
+                        <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_b_6,$i,"pic_name"));?>&&w=200" width="204" height="137" />
+                        <div style="height:25px; overflow:hidden;">
+                            <a style="color:#FFF;" href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_b_6,$i,"id"));?>.html" target="_blank" class="fen4_2_1_1"><?php echo(mysql_result($result_b_6,$i,"name"));?></a>
+                        </div>
+                        <div style="color:#e6024f; color:#000;"><b><?php if(mysql_result($result_b_6,$i,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_b_6,$i,"jiage")."元");}?></b>&nbsp;&nbsp;<span><?php echo(mysql_result($result_b_6,$i,"num"));?></span><b>人浏览</b></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_b_6,$i,"user_id"));?>.html" target="_blank" class="fen4_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+        </td>
+        <td width="300">
+            <div style="height:10px;"></div>
+            <img src="__ROOT__/style/web/default/img/ad7.jpg" width="299" height="450" />
+        </td>
+    </tr>
+</table>
+<!--首页第四部分 -->
+
+
+
+<!--广告部分 -->
+<div style=" margin:10px 0px 10px 0px; text-align:center;"><img src="__ROOT__/style/web/default/img/ad6.jpg" width="1200" height="56" /></div>
+<!--广告部分 -->
+
+
+
+<!--首页第五部分 -->
+<table width="1200" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
+    <div class="fen5_1">
+        <div class="fen5_1_1">设备资源</div>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/47.html" target="_blank" class="fen5_1_2">开采设备</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/48.html" target="_blank" class="fen5_1_2">吊装</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/49.html" target="_blank" class="fen5_1_2">运输</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/50.html" target="_blank" class="fen5_1_2">叉车</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/51.html" target="_blank" class="fen5_1_2">手工具</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/52.html" target="_blank" class="fen5_1_2">切割机械</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/53.html" target="_blank" class="fen5_1_2">砂锯</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/54.html" target="_blank" class="fen5_1_2">绳锯</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/55.html" target="_blank" class="fen5_1_2">排锯</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/56.html" target="_blank" class="fen5_1_2">异形机械</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/57.html" target="_blank" class="fen5_1_2">研磨</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/58.html" target="_blank" class="fen5_1_2">辅助</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/59.html" target="_blank" class="fen5_1_2">污水处理</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/60.html" target="_blank" class="fen5_1_2">流水线</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei/leixing/61.html" target="_blank" class="fen5_1_2">其他</a>
+        <a href="<?php echo($http_host);?>/index.php/to/listshebei.html" target="_blank" class="fen5_1_3">更多</a>
+        <div style="clear:both;"></div>
+    </div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <div class="fen5_2">
+                    <img src="__ROOT__/style/web/default/img/ad5.jpg" width="310" height="230px" />
+                    <a>你身边的设计专家</a>
+                </div>
+                <div class="fen5_3">
+                    <div style="clear:both;"></div>
+                    <a>花岗岩</a><a>大理石</a><a>石灰石</a><a>自然石雕</a>
+                    <a>雕刻装饰</a><a>石时钟</a><a>玄武岩</a><a>蛇纹岩</a>
+                    <a>水钵/水槽</a><a>庭院家具</a><a>桌子/椅子</a><a>风景石</a>
+                    <a>弧形板</a><a>烤架</a><a>圆柱</a><a>现代艺术</a>
+                    <div style="clear:both;"></div>
+                </div>
+            </td>
+            <td width="880">
+
+                <div class="fen5_4">
+                    <div class="fen5_4_1">
+                        <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_5,$i,"pic_name"));?>&&w=200" width="185" height="117" />
+                        <a style="color:#FFF;" href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_5,$i,"id"));?>.html" target="_blank" class="fen5_4_1_1"><?php echo(mysql_result($result_5,$i,"name"));?></a>
+                        <div>价格：<span style="color:#e6024f"><?php if(mysql_result($result_5,$i,"jiage")=="0"){echo("面议");}else{echo(mysql_result($result_5,$i,"jiage")."元");}?></span></div>
+                        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_5,$i,"user_id"));?>.html" target="_blank" style="color:#6c7085;">我要联系</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</td></tr></table>
+<!--首页第五部分 -->
+
+
+
+<!--首页第六部分 -->
+<table width="1200" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td colspan="3">
+            <div class="fen6_3_1">
+                <span>用户板块</span>
+                <div class="fen6_3_1_1" ka="fen6_3_1_1_dd1" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">最热用户</div>
+                <div class="fen6_3_1_2">|</div>
+                <div class="fen6_3_1_1" ka="fen6_3_1_1_dd2" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4_1.jpg) no-repeat center bottom;">经纪人</div>
+                <div class="fen6_3_1_2">|</div>
+                <div class="fen6_3_1_1" ka="fen6_3_1_1_dd3" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">设计师</div>
+                <div class="fen6_3_1_2">|</div>
+                <div class="fen6_3_1_1" ka="fen6_3_1_1_dd4" onmouseover="ka2(this)" bg1="__ROOT__/style/web/default/img/bg4.jpg" bg2="__ROOT__/style/web/default/img/bg4_1.jpg" style="background:url(__ROOT__/style/web/default/img/bg4.jpg) repeat-x bottom;">企业用户</div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td width="200">
+            <div style="height:10px;"></div>
+            <div class="fen6_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen6_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen6_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen6_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen6_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen6_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div class="fen6_3_2"><a>江西省</a><span>|</span><a>福建省</a><span>|</span><a>湖南省</a></div>
+            <div style="height:10px;"></div>
+            <div class="fen6_3_3">
+                <div style="clear:both"></div>
+                <span>看石展</span>
+                <a href="/index.php/to/listzhanhui.html">更多>></a>
+                <div style="clear:both"></div>
+            </div>
+            <div class="fen2_3_4"><div style="height:25px; color:#333; overflow:hidden;"><span>[开始时间]</span>撒旦撒打撒是</div><div>截止结束时间 号结束</div><a href="" target="_blank">了解详情</a></div>
+            <div class="fen2_3_4"><div style="height:25px; color:#333; overflow:hidden;"><span>[开始时间]</span>撒旦撒打撒是</div><div>截止结束时间 号结束</div><a href="" target="_blank">了解详情</a></div>
+            <div class="fen2_3_4"><div style="height:25px; color:#333; overflow:hidden;"><span>[开始时间]</span>撒旦撒打撒是</div><div>截止结束时间 号结束</div><a href="" target="_blank">了解详情</a></div>
+        </td>
+        <td width="700">
+            <div class="fen6_3_1_1_yin" id="fen6_3_1_1_dd1" style="display:none;">
+
+                <div class="fen6_2">
+                    <div class="fen6_2_1">
+                        <img src="" width="204" height="137" />
+                        <a href="" target="_blank" class="fen6_2_1_1">地方地方的的</a>
+                        <div style="color:#e6024f; color:#000;"><b>地址</b>&nbsp;&nbsp;<span>点击数</span><b>人浏览</b></div>
+                        <a href="" target="_blank" class="fen6_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen6_3_1_1_yin" id="fen6_3_1_1_dd2">
+
+                <div class="fen6_2">
+                    <div class="fen6_2_1">
+                        <img src="" width="204" height="137" />
+                        <a href="" target="_blank" class="fen6_2_1_1">地方地方的的</a>
+                        <div style="color:#e6024f; color:#000;"><b>地址</b>&nbsp;&nbsp;<span>点击数</span><b>人浏览</b></div>
+                        <a href="" target="_blank" class="fen6_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen6_3_1_1_yin" id="fen6_3_1_1_dd3" style="display:none;">
+
+                <div class="fen6_2">
+                    <div class="fen6_2_1">
+                        <img src="" width="204" height="137" />
+                        <a href="" target="_blank" class="fen6_2_1_1">地方地方的的</a>
+                        <div style="color:#e6024f; color:#000;"><b>地址</b>&nbsp;&nbsp;<span>点击数</span><b>人浏览</b></div>
+                        <a href="" target="_blank" class="fen6_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+            <div class="fen6_3_1_1_yin" id="fen6_3_1_1_dd4" style="display:none;">
+
+                <div class="fen6_2">
+                    <div class="fen6_2_1">
+                        <img src="" width="204" height="137" />
+                        <a href="" target="_blank" class="fen6_2_1_1">放飞关分隔符</a>
+                        <div style="color:#e6024f; color:#000;"><b>地址</b>&nbsp;&nbsp;<span>点击数</span><b>人浏览</b></div>
+                        <a href="" target="_blank" class="fen6_2_1_2">我要联系</a>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+        </td>
+        <td width="300">
+            <div style="height:10px;"></div>
+            <img src="__ROOT__/style/web/default/img/ad7.jpg" width="299" height="450" />
+        </td>
+    </tr>
+</table>
+<!--首页第六部分 -->
+
+
+
+<div style=" height:10px;"></div>
+
+
+
+
+<!--首页第七部分 -->
+<table width="1200" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
+    <div class="fen7_1">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" height="67px;">
+            <tr>
+                <td width="200">
+                    <div class="fen7_1_1">
+                        <span class="fen7_1_1_1">广告</span>
+                        <span class="fen7_1_1_2">分类</span>
+                    </div>
+                </td>
+                <td align="center">
+                    <div class="fen7_1_2">中国广告企业联盟</div>
+                    <div>
+                        <span style="color:#F03;">热门搜索：</span>&nbsp;
+                        <a>香港广告加盟</a>&nbsp;
+                        <a>香港广告加盟</a>&nbsp;
+                        <a>香港广告加盟</a>&nbsp;
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="fen7_2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="230">
+                    <div class="fen7_2_1">
+                        <div class="fen7_2_1_1">热门分类</div>
+                        <div class="fen7_2_1_2"><a>石材</a><span>|</span><a>石材</a><span>|</span><a>石材</a></div>
+                        <div class="fen7_2_1_2"><a>石材</a><span>|</span><a>石材</a><span>|</span><a>石材</a></div>
+                        <div class="fen7_2_1_2"><a>石材</a><span>|</span><a>石材</a><span>|</span><a>石材</a></div>
+                        <div style="height:15px;"></div>
+                        <div class="fen7_2_1_3">热门分类</div>
+                        <div class="fen7_2_1_4">
+                            <div style="clear:both;"></div>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <a>金色大理石</a>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <div class="fen7_2_2_1"><img src="__ROOT__/style/web/default/img/ad5.jpg" width="200" height="105px" /><a>你身边的设计专家</a></div>
+                        <div class="fen7_2_2_1"><img src="__ROOT__/style/web/default/img/ad5.jpg" width="200" height="105px" /><a>你身边的设计专家</a></div>
+                        <div class="fen7_2_2_1"><img src="__ROOT__/style/web/default/img/ad5.jpg" width="200" height="105px" /><a>你身边的设计专家</a></div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div>
+                        <div style="clear:both;"></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div class="fen7_2_2_2"><b>石材</b><span>|</span><a>警方获破利用小广告实施诈骗获破团伙</a></div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </td>
+                <td width="310">
+                    <div class="fen7_2_3">
+                        <!--样式一选项卡动作 -->
+                        <div style=" text-align:right;">
+                            <div class="fen7_2_3_xuan1" ka="fen7_2_3_xuan1_dd1" onmouseover="ka1(this)" style="border-top:3px solid #d54f58; border-bottom:1px solid #ffffff;background:#FFF;">企业排行</div>
+                            <div class="fen7_2_3_xuan1" ka="fen7_2_3_xuan1_dd2" onmouseover="ka1(this)" style=" border-top:3px solid #f7f7f7; border-bottom:1px solid #dfdfdf;background:#f7f7f7;">大理石排行榜</div>
+                            <div class="fen7_2_3_1">更多>></div>
+                            <div style="clear:both;"></div>
+                        </div>
+                        <div style="height:5px;"></div>
+                        <div class="fen7_2_3_xuan1_yin" id="fen7_2_3_xuan1_dd1">
+
+                            <a href="/kongjian.php/to/" target="_blank">萨达萨达阿的撒旦撒</a>
+
+                        </div>
+                        <div class="fen7_2_3_xuan1_yin" id="fen7_2_3_xuan1_dd2" style="display:none;">
+
+                            <a href="/index.php/to/content1_" target="_blank">对方的方式发的</a>
+
+                        </div>
+                        <!--样式一选项卡动作 -->
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</td></tr></table>
+<!--首页第七部分 -->
+
+
+
+<div style=" height:15px;"></div>
+
+
+
+<!--页面body部分 -->
+<div style="margin:0 auto; width:1200px; height:15px;"></div>
+<include file="include/public_fooer"/>
+</body>
+</html>

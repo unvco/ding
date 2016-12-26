@@ -1,0 +1,67 @@
+<form id="muban_form" class="form" action="{:U('muban')}" method="Post">
+	<style>
+		.myInfo-content { width:100%;}
+		.con-div{margin-bottom: 10px;}
+		.con-left {text-align: left;font-weight: 700; float: left; background: #cccccc; padding: 20px; margin: 20px;}
+		.con-left img{width: 300px; height: 400px; background: #00ca6d; border: 2px solid #0d6aad;}
+	</style>
+	<div class="myInfo-content">
+		<div class="row">
+			<div class="con-left">
+				<img src=""/>
+				<div style="text-align: center;">
+					<input type="radio" name="template" value="default" />default
+				</div>
+			</div>
+			<div class="con-left">
+				<img src=""/>
+				<div style="text-align: center;">
+					<input type="radio" name="template" value="user" />user
+				</div>
+			</div>
+			<div class="con-left">
+				<img src=""/>
+				<div style="text-align: center;">
+					<input type="radio" name="template" value="user1" />user1
+				</div>
+			</div>
+			<div class="con-left">
+				<img src=""/>
+				<div style="text-align: center;">
+					<input type="radio" name="template" value="user2" />user2
+				</div>
+			</div>
+			<div class="con-left">
+				<img src=""/>
+				<div style="text-align: center;">
+					<input type="radio" name="template" value="user3" />user3
+				</div>
+			</div>
+		</div>
+		<div style="text-align: center;">
+			<input type="submit" class="btn btn-success" name="submit" value="保存">&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-primary" onclick="javascript:closeDlg();" value="取消">
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$("input[type=radio][name=template]").each(function(){
+		if($(this).val()=="{$userInfo.template}"){
+			$(this).attr("checked",'checked');
+		}
+	});
+	$('#muban_form').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			showSuccess(data.retData);
+			closeDlg();
+		}else{
+			showError(data.errMsg);
+		}
+	}
+	function checkForm(){
+
+
+	}
+</script>
+					

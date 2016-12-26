@@ -1,0 +1,18 @@
+<!--活跃会员部分 -->
+        <div style="border-bottom:1px solid #dbdbdb; font-size:16px; font-weight:bold; line-height:30px; margin-top:10px; padding-left:20px;">活跃会员</div>
+        <div style="margin-bottom:15px;">
+        <?php
+        //获取石材供应最热文章11篇
+        $sql_hot_user="SELECT * FROM ding_user ORDER BY id ASC LIMIT 0 , 16";
+        $result_hot_user = mysql_query($sql_hot_user);
+        $num_result_hot_user=mysql_num_rows($result_hot_user);
+	    for($i=0;$i <16;$i++){
+	    ?>
+        <a href="<?php echo($http_host);?>/space.php/to/<?php echo(mysql_result($result_hot_user,$i,"id"));?>.html" target="_blank" style="margin:10px 0px 0px 6px; text-align:center; float:left; display:block;">
+          <img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_hot_user,$i,"touxiang"));?>" width="55" height="50" style="border:1px solid #dbdbdb; padding:1px; display:block" />
+          <span style="display:block; line-height:25px; overflow:hidden; width:55px; color:#333; height:25px;"><?php echo(mysql_result($result_hot_user,$i,"name"));?></span>
+        </a>
+        <?php }?>
+        <div style="clear:both;"></div>
+        </div>
+        <!--活跃会员部分 -->

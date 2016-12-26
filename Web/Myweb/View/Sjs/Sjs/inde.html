@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>设计师主页</title>
+    <include file="./Web/Home/View/default/include/public_style.html"/>
+</head>
+
+<body>
+<include file="./Web/Home/View/default/include/public_daohang.html"/>
+<style>
+    .sjs_header{background: url("__ROOT__/style/web/myweb/default/yangshi/sjs_header.jpg"); background-size: 100% 100%; height: 420px;}
+    .sjs_header .header_pic{border: 3px solid #FFFFFF; border-radius: 77px; width: 154px; height: 154px; margin: 0 auto; display: block;}
+    .sjs_header .name{font-size: 26px; font-weight: bold; color: #FFFFFF; text-align: center; margin-top: 10px;}
+    .sjs_header .zhuying{color: #FFFFFF; text-align: center;margin-top: 10px;}
+    .sjs_header .address{color: #ffffff; text-align: center; margin-top: 10px;}
+    .sjs_header .guanzhu{text-align: center;margin-top: 15px;}
+</style>
+<div class="sjs_header">
+    <div style="height: 50px;"></div>
+    <img class="header_pic" src="{$userInfo['headerpic']}"/>
+    <div class="name">{$userInfo['name']}</div>
+    <div class="zhuying">{$userInfo['work_mark']}</div>
+    <div class="address">{$userInfo['address']}</div>
+    <div class="guanzhu"><input type="button" rel="{$userInfo['id']}" value="+ 关注"/></div>
+</div>
+<style>
+    .sjs_banner{background: #333333;}
+    .sjs_banner ul{display: block;line-height: 40px; color: #FFFFFF; width: 1200px; margin: 0 auto;padding: 0;}
+    .sjs_banner ul li{display: block;float: left; padding: 0 30px 0 30px;}
+    .sjs_banner ul li:hover{background: #d5544e;}
+    .sjs_banner ul .active{background: #d5544e;}
+    .sjs_banner ul .score{background: #1e1e1e;width: 250px; text-align: center; float: right; font-size: 18px;}
+    .sjs_banner ul .score .lianxi{width: 100%; position: absolute; width: 250px;}
+    .sjs_banner ul .score .lianxi .lianxi1{border: 1px solid #dddddd; margin-top: 20px; padding: 25px;}
+    .sjs_banner ul .score .lianxi .lianxi1 .yuyue{background: #db514f; line-height: 40px; margin-bottom: 15px;}
+    .sjs_banner ul .score .lianxi .lianxi1 .phone{background: #41c08d; line-height: 40px; margin-bottom: 15px;}
+    .sjs_banner ul .score .lianxi .lianxi1 .mark{color: #606255; font-size: 12px; text-align: center; line-height: 25px; background: #FFFFFF;}
+</style>
+<div class="sjs_banner">
+    <ul>
+        <li class="active">设计作品</li>
+        <li>客户评价</li>
+        <li>成交记录</li>
+        <li>关于Ta</li>
+        <li>Ta的博文</li>
+        <div class="score">
+            信用 5.5分
+            <div class="lianxi">
+                <div class="lianxi1">
+                    <div class="yuyue" rel="{$userInfo['id']}">预约咨询</div>
+                    <div class="phone">{$userInfo['mobile']}</div>
+                    <div class="mark">原创作品  真实评价  信赖可靠</div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </ul>
+</div>
+<style>
+    .content{ width:  1200px; padding: 0;margin: 0 auto;}
+    .content .left{width: 930px; float: left; margin-top: 20px;}
+    .content .right{width: 250px; float: right; margin-top: 20px;}
+</style>
+<div class="row content">
+    <div class="left">
+        <!--下面是类别选择-->
+        <style>
+            .search_type{border-bottom: 1px dashed #dddddd; margin-bottom: 15px; padding-bottom: 10px;}
+            .search_type span{ background: #f7f7f7; padding: 5px 8px; display: block; float: left; margin: 0 20px 0 0; border-radius: 5px;font-size: 13px;}
+            .search_type .active{background: #cacaca; color: #FFFFFF;}
+        </style>
+        <div class="search_type">
+            <span class="active">全部(34)</span>
+            <span>家装(28)</span>
+            <span>工装(6)</span>
+            <div style="clear: both;"></div>
+        </div>
+        <!--下面是列表-->
+        <style>
+            .one_content{border: 1px solid #dddddd; padding: 20px; margin-bottom: 15px;}
+            .one_content .name{line-height: 30px;}
+            .one_content .name a{color: #606255; font-size: 20px; font-weight: bold; display: block; float: left;}
+            .one_content .name a:hover{color: #db514f; text-decoration: none;}
+            .one_content .name span{color: #606255; font-size: 12px; float: right; display: block;}
+            .one_content .introduce{font-size: 12px; line-height: 30px; margin-bottom: 10px;}
+
+            .one_content .my_sheji img{width: 206px; height: 210px; display: block;float: left;margin-right: 20px;}
+            .one_content .my_sheji .no_margin{margin-right: 0px;}
+        </style>
+        <foreach name="data" item="vo">
+            <div class="one_content">
+                <div>
+                    <div class="name">
+                        <a href="{:U('Home/Zhanshi/content',array('newsid'=>$vo['id']))}">{$vo.name}</a>
+                        <span>{$vo.area}㎡| {$vo.pic_num}图| {$vo.look_num}浏览</span>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div class="introduce">{$vo.introduce}</div>
+                </div>
+                <div></div>
+                <div class="my_sheji">
+                    <foreach name="vo['pic_arr']" item="vo1">
+                        <if condition="($key+1) lt 5">
+                            <if condition="($key+1) eq 4">
+                                <img class="no_margin" src="{$vo1}"/>
+                                <else/>
+                                <img src="{$vo1}"/>
+                            </if>
+                        </if>
+                    </foreach>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </foreach>
+        <include file="./Web/Home/View/default/include/public_list_yema.html"/>
+    </div>
+
+    <div class="right">
+
+    </div>
+</div>
+<div style="clear: both;"></div>
+</div>
+<!--页面body部分 -->
+<include file="./Web/Home/View/default/include/public_fooer.html"/>
+</body>
+</html>

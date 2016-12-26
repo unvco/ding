@@ -1,0 +1,67 @@
+<h2 class="contentTitle">程序方法管理（动作：<if condition="$info.id neq ''">修改<else />添加</if>）</h2>
+<form method="post" action="{:U('add')}" class="pageForm required-validate" onsubmit="return validateCallback(this, gotonewslist)">
+	<div class="pageFormContent" layoutH="115">
+		<dl class="nowrap">
+			<dt>用户名：</dt>
+			<dd>
+				<input name="Admin[name]" class="required" alt="" value="{$info.name}" type="text" style="width: 250px;">
+				<input type="hidden" name="Admin[id]" value="{$info.id}"/>
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>密码：</dt>
+			<dd>
+				<input name="Admin[password]" class="required" alt="" value="{$info.password}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>真实名：</dt>
+			<dd>
+				<input name="Admin[truename]" class="required" alt="" value="{$info.truename}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>身份证：</dt>
+			<dd>
+				<input name="Admin[idcard]" class="required" alt="" value="{$info.idcard}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>用户类型：</dt>
+			<dd>
+				<input name="Admin[typeid]" class="required" alt="" value="{$info.typeid}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>邮箱：</dt>
+			<dd>
+				<input name="Admin[email]" class="required" alt="" value="{$info.email}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>qq：</dt>
+			<dd>
+				<input name="Admin[qq]" class="required" alt="" value="{$info.qq}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>手机号：</dt>
+			<dd>
+				<input name="Admin[mobile]" class="required" alt="" value="{$info.mobile}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+	</div>
+	
+	<div class="formBar">
+		<ul>
+			<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+			<li><div class="button"><div class="buttonContent"><button class="close" type="button">关闭</button></div></div></li>
+		</ul>
+	</div>  
+
+</form>
+<script language="JavaScript">
+	function gotonewslist(data){
+		dialogformcallback(data,'{:CONTROLLER_NAME}_Lists');
+	}
+</script>

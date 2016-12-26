@@ -1,0 +1,46 @@
+<style type="text/css">
+	.menulist_div1{float: left; width: 25px; height: 20px; background: url(__ROOT__/style/admin/themes/default/images/accordion/accordion.png) no-repeat -0px -154px;}
+	.menulist_tree{float: left; width: 25px; height: 20px; background: url(__ROOT__/style/admin/themes/default/images/tree/tree.png) no-repeat -0px -495px;}
+	.menulist_div2{float: left; width: 25px; height: 20px; background: url(__ROOT__/style/admin/themes/default/images/tree/folder.png) no-repeat -0px -0px;}
+	.menulist_div3{float: left; width: 25px; height: 20px; background: url(__ROOT__/style/admin/themes/default/images/tree/folder.png) no-repeat -0px -100px;}
+	.menulist_div4{float: left; width: 25px; height: 20px;}
+</style>
+<div class="pageContent">
+	<table class="table" layoutH="30" targetType="dialog" width="100%">
+		<thead>
+		<tr>
+			<th orderfield="orgName">类别名称</th>
+			<th orderfield="orgNum">绑定关键字</th>
+			<th orderfield="leader">创建时间</th>
+			<th width="80">查找带回</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>创建顶级类别</td>
+			<td>0</td>
+			<td></td>
+			<td>
+				<a class="btnSelect" href="javascript:$.bringBack({id:'0', orgName:'创建顶级类别', orgNum:''})" title="查找带回">选择</a>
+			</td>
+		</tr>
+		<foreach name="lists" item="vo">
+			<tr>
+				<td>
+					<!--不是一级分类-->
+					<for start="0" end="$vo.level">
+						<div class="menulist_div4"></div>
+					</for>
+					<div class="menulist_tree"></div>
+					{$vo.name}
+				</td>
+				<td>{$vo.keyword}</td>
+				<td>{$vo.createtime}</td>
+				<td>
+					<a class="btnSelect" href="javascript:$.bringBack({id:'{$vo.id}', orgName:'{$vo.name}', orgNum:''})" title="查找带回">选择</a>
+				</td>
+			</tr>
+		</foreach>
+		</tbody>
+	</table>
+</div>

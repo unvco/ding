@@ -1,0 +1,68 @@
+<form id="pagerForm" method="post" action="">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="numPerPage" value=""/>
+	<input type="hidden" name="orderField" value="${param.orderField}"/>
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}"/>
+</form>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="delete" href="{:U('delete')}?uid={sid_user}" target="ajaxTodo" callback="tabformcallback" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="add" href="{:U('add')}?uid={sid_user}" target="dialog" width="750" height="410" rel="{:CONTROLLER_NAME}_add"><span>修改</span></a></li>
+			<li><a class="add" href="{:U('add')}" target="dialog" width="750" height="410" rel="{:CONTROLLER_NAME}_add"><span>添加</span></a></li>
+			<li class="line">line</li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="76">
+		<thead>
+		<tr>
+			<th>id号</th>
+			<th>用户名</th>
+			<th>密码</th>
+			<th>真实名</th>
+			<th>身份证</th>
+			<th>用户类型</th>
+			<th>邮箱</th>
+
+			<th>QQ</th>
+			<th>电话</th>
+			<th>注册时间</th>
+			<th>最后登陆时间</th>
+			<th>是否在线</th>
+		</tr>
+		</thead>
+		<tbody>
+		<foreach name="lists" item="vo">
+			<tr target="sid_user" rel="{$vo.id}">
+				<td>{$vo.id}</td>
+				<td>{$vo.name}</td>
+				<td>{$vo.password}</td>
+				<td>{$vo.truename}</td>
+				<td>{$vo.idcard}</td>
+				<td>{$vo.typeid}</td>
+				<td>{$vo.email}</td>
+
+				<td>{$vo.qq}</td>
+				<td>{$vo.mobile}</td>
+				<td>{$vo.regtime}</td>
+				<td>{$vo.lastlogintime}</td>
+				<td>{$vo.isonline}</td>
+			</tr>
+		</foreach>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>共有数据条</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="200">200</option>
+			</select>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="" numPerPage="" pageNumShown="1" currentPage="1"></div>
+
+	</div>
+</div>

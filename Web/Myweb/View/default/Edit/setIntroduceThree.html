@@ -1,0 +1,35 @@
+<form id="setIntroduceThree" class="form" action="{:U('setIntroduceThree')}" method="Post">
+	<table class="table">
+		<tr>
+			<td>标题</td>
+			<td><input type="text" class="form-control" name="name[]" value="{$setIntroduceThree['name'][0]}"/></td>
+			<td><input type="text" class="form-control" name="name[]" value="{$setIntroduceThree['name'][1]}"/></td>
+			<td><input type="text" class="form-control" name="name[]" value="{$setIntroduceThree['name'][2]}"/></td>
+			<td><input type="text" class="form-control" name="name[]" value="{$setIntroduceThree['name'][3]}"/></td>
+		</tr>
+		<tr>
+			<td>链接</td>
+			<td><input type="text" class="form-control" name="url[]" value="{$setIntroduceThree['url'][0]}"/></td>
+			<td><input type="text" class="form-control" name="url[]" value="{$setIntroduceThree['url'][1]}"/></td>
+			<td><input type="text" class="form-control" name="url[]" value="{$setIntroduceThree['url'][2]}"/></td>
+			<td><input type="text" class="form-control" name="url[]" value="{$setIntroduceThree['url'][3]}"/></td>
+		</tr>
+	</table>
+	<div style="text-align: center;">
+		<input type="submit" class="btn btn-success" name="submit" value="保存">&nbsp;&nbsp;&nbsp;
+	</div>
+</form>
+
+<script type="text/javascript">
+	$('#setIntroduceThree').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			location.reload();
+		}else{
+			alert('更新失败');
+		}
+	}
+	function checkForm(){
+
+	}
+</script>

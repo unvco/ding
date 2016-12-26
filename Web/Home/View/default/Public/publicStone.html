@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新闻资讯列表--石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+    <include file="include/public_style"/>
+    <style>
+        .row{padding: 0px;margin: 0px;}
+    </style>
+</head>
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<!--页面导航链接部分-->
+<style>
+    .url_address{width: 1200px; line-height:45px;margin: 0 auto; font-size: 13px;}
+    .url_address a{color: #676767; display: block; margin-right: 10px;float: left;}
+    .url_address span{color: #676767; display: block; margin-right: 10px; float: left;}
+</style>
+<div class="url_address">
+    <a>信息发布</a>
+    <span>></span>
+    <a>选择石材类别</a>
+    <span>></span>
+    <a>{$stoneTypeInfo.name}</a>
+    <div style="clear: both;"></div>
+</div>
+<!--页面导航链接部分-->
+<style>
+    .div_content{width: 1200px; margin: 0 auto; border: 1px solid #dadada; padding: 20px;}
+    .con-div{margin: 10px 10px;}
+</style>
+<div class="row div_content">
+    <form id="news_form" class="form" action="{:U('publicStone')}" method="Post">
+        <input name="id" value="{$newInfo.id}" type="hidden">
+        <input name="common_type" value="{$stoneTypeInfo.id}" type="hidden">
+        <div class="row con-div">
+            <div class="col-md-1 con-left">名称：</div>
+            <div class="col-md-7"><input type="text" class="form-control" name="name" value="{$newInfo.name}"/></div>
+        </div>
+
+        <div class="row con-div">
+            <div class="col-md-1 con-left">颜色：</div>
+            <div class="col-md-3">
+                <select name="stone_color" class="form-control" id="stone_color">
+                    <option value="">请选择</option>
+                    <foreach name="configTypeColor" item="vo">
+                        <option value="{$vo.name}">{$vo.name}</option>
+                    </foreach>
+                </select>
+            </div>
+            <div class="col-md-1 con-left">价格：</div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="price" value="{$newInfo.price}"/>
+                    <span class="input-group-addon">元</span>
+                </div>
+            </div>
+        </div>
+        <div class="row con-div">
+            <div style="font-size: 12px; color: #F00">请认真编辑文章信息，这些信息展现给用户浏览，更能增加您的联系量。</div>
+        </div>
+        <div class="row con-div">
+            <div style="font-size: 12px;">（提交后，服务器会自动提取前面的字段生成文章简介）</div>
+        </div>
+        <div class="row con-div">
+            <script type="text/javascript" charset="utf-8" src="__ROOT__/style/editor/ueditor.all.min.js"> </script>
+            <textarea name="content" id="editor" style="width:800px;height:500px;">{$newInfo.content}</textarea>
+
+            <script type="text/javascript">
+                var ue = UE.getEditor('editor');
+                UE.getEditor('editor').ready(function(){
+                })
+            </script>
+        </div>
+
+        <div style="text-align: center;">
+            <div class="col-md-8"><input type="submit" class="btn btn-success" name="submit" value="保存"></div>
+        </div>
+    </form>
+</div>
+<!--页面body部分 -->
+<include file="include/public_fooer"/>
+<script type="text/javascript">
+    $('#news_form').ajaxForm({success:success,beforeSend:checkForm});
+    function success(data){
+        if(data.errNum==0){
+            jBox.messager('发布成功');
+        }else{
+            jBox.messager('发布失败');
+        }
+    }
+    function checkForm(){
+
+    }
+</script>
+</body>
+</html>

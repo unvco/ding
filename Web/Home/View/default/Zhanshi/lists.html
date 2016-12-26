@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>案例欣赏列表--石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+    <include file="include/public_style"/>
+</head>
+
+<body>
+
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<include file="include/public_url_address"/>
+
+<div class="row" style="width: 1200px;padding: 0px; margin: 0 auto;">
+    <include file="include/public_type_search"/>
+    <include file="include/public_list_order"/>
+    <!--页面body部分 -->
+
+    <!--列表部分 -->
+    <foreach name="data" item="vo">
+        <a href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank" style="width:380px; float:left; position:relative; margin:20px 20px 0px 0px; background:#f9e7ea; display:block;">
+            <img src="{$vo.pic_name}" width="380" height="200">
+            <div style="background:#000000; opacity: 0.5; filter:alpha(opacity=50);height:25px; position:absolute; width:380px; top:175px;"></div>
+            <div style=" line-height:25px;position:absolute; width:380px; top:175px; color:#FFF; padding-left:15px;">{$vo.user_name}</div>
+            <div style=" height:30px; line-height:30px;">
+                <div style="clear:both"></div>
+                <div style="float:left; margin-left:15px; color:#666; font-weight:bold;">{$vo.name}</div>
+                <div style="float:right; color:#C33; margin-right:15px; font-size:12px;">[{$vo.user_address}]</div>
+                <div style="clear:both"></div>
+            </div>
+        </a>
+    </foreach>
+    <div style="clear:both;"></div>
+    <!--列表部分 -->
+
+    <include file="include/public_list_yema"/>
+</div>
+<!--页面body部分 -->
+<include file="include/public_fooer"/>
+</body>
+</html>

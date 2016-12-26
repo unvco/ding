@@ -1,0 +1,19 @@
+<style>
+    .public_content1_1{border-bottom:1px solid #d7d7d7;}
+    .public_content1_1 div{font-size:18px; color:#333; border-bottom:2px solid #F03; width:110px; text-align:center; line-height:35px;}
+    .public_content1_2{ display:block;font-size:14px; line-height:30px; float:left; margin:15px 15px 15px 0px; text-align:center;}
+    .public_content1_2 img{padding:10px; border:1px solid #d7d7d7;}
+    .public_content1_2 div{width:260px; height:30px; overflow:hidden; color:#333;}
+    .public_content1_2 div span{ color:#F00;}
+</style>
+<div class="public_content1_1">
+    <div>猜你喜欢</div>
+</div>
+<div class="row">
+    <foreach name="hotDiv3" item="vo">
+        <a class="public_content1_2" href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank">
+            <img src="{$vo['pic_name']}" width="285" height="240">
+            <div>{$vo['name']}<span>(<if condition="$vo['price'] eq 0">面议<else />{$vo.price}元</if>)</span></div>
+        </a>
+    </foreach>
+</div>

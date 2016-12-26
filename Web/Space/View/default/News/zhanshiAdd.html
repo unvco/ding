@@ -1,0 +1,64 @@
+<form id="news_form" class="form" action="{:U('zhanshiAdd')}" method="Post">
+	<style>
+		.myInfo-content { width: 800px; margin: 20px 0 50px 50px;}
+		.con-div{margin-bottom: 10px;}
+		.con-left {text-align: left;font-weight: 700;}
+	</style>
+	<div class="myInfo-content">
+		<input name="id" value="{$newInfo.id}" type="hidden">
+		<div class="row con-div">
+			<div class="col-md-2 con-left">展示文章名称：</div>
+			<div class="col-md-4"><input type="text" class="form-control" name="name" value="{$newInfo.name}"/></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-2 con-left">展示文章类别：</div>
+			<div class="col-md-4">
+				<select name="type" class="form-control" id="type">
+					<option value="">请选择</option>
+					<foreach name="configType" item="vo">
+						<option value="{$vo.id}">{$vo.name}</option>
+					</foreach>
+				</select>
+			</div>
+		</div>
+		<div class="row con-div">
+			<div style="font-size: 12px; color: #F00">请认真编辑文章信息，这些信息展现给用户浏览，更能增加您的联系量。</div>
+		</div>
+		<div class="row con-div">
+			<div style="font-size: 12px;">（提交后，服务器会自动提取前面的字段生成文章简介）</div>
+		</div>
+		<div class="row con-div">
+			<script type="text/javascript" charset="utf-8" src="__ROOT__/style/editor/ueditor.all.min.js"> </script>
+			<textarea name="content" id="editor" style="width:800px;height:500px;">{$newInfo.content}</textarea>
+
+			<script type="text/javascript">
+				var ue = UE.getEditor('editor');
+				UE.getEditor('editor').ready(function(){
+				})
+			</script>
+		</div>
+
+		<div style="text-align: center;">
+			<input type="submit" class="btn btn-success" name="submit" value="保存">&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-primary" onclick="javascript:closeDlg();" value="取消">
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$('#type').val("{$newInfo.type}");
+	$('#news_form').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			showSuccess(data.retData);
+			var link = "{:U('zhanshiIndex')}";
+			$('.content-header>h1').html('展示文章');
+			loadURL(link,'.page-content');
+		}else{
+			showError(data.errMsg);
+		}
+	}
+	function checkForm(){
+
+	}
+</script>
+

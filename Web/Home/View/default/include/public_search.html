@@ -1,0 +1,35 @@
+<!--搜索部分-->
+<style>
+    .search_input{background: #f2f2f2;border-bottom: 1px solid #dadada;padding: 15px 0;}
+    .middle{margin: 0 auto; width: 1200px;}
+    .search_input_div{ position:relative;float: left;}
+    .search_input_div_input{ width:403px;height:42px;border: 0px; border:1px solid #969696; border-right: 0; padding:0px 20px 0px 15px; margin:0px 0px 0px 1px; font-size:14px; color:#999;}
+    .search_input_div_button{ width:60px; height:42px; position:absolute; top:0px; right:0px; background:url(__ROOT__/style/web/default/img/search_button.jpg); border: 0;}
+    .search_input_div_button:active{background:url(__ROOT__/style/web/default/img/search_button_active.jpg);}
+    .search_input_keyword{float: left; line-height: 40px; padding-left: 25px;}
+    .search_input_keyword a{float: left; color: #676767; display: block;margin-left: 10px;}
+    .search_input_keyword .active{color: #e2054b; font-weight: bold;}
+</style>
+<div class="search_input">
+    <div class="middle">
+        <div class="search_input_div">
+            <form action="{:U('lists')}">
+                <input class="search_input_div_input" name="keyword" type="text" value="{$Think.get.keyword}" />
+                <input class="search_input_div_button" type="submit" value="">
+            </form>
+        </div>
+        <div class="search_input_keyword">
+            <a class="active">大理石</a>
+            <a>花岗岩</a>
+            <a>花岗岩</a>
+            <a>花岗岩</a>
+            <a>花岗岩</a>
+            <a>花岗岩</a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</div>
+<!--搜索部分-->
+<script>
+
+</script>

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title><?php echo(mysql_result($result,0,"name"));?></title>
+    <include file="include/public_style"/>
+</head>
+
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<include file="include/public_url_address"/>
+<!--页面body部分 -->
+<div style="margin:0 auto; width:1200px;">
+  <!--内容页左侧部分 -->
+  <div style="float:left; width:895px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center">
+       <div style="font-size:24px; line-height:35px; display:block; font-weight:bold; border-bottom:1px double #dbdbdb;"><?php echo(mysql_result($result,0,"name"));?></div>
+    </td>
+  </tr>
+  </table>
+  <!--内容内容部分 -->
+  <div style="border-bottom:3px solid #cc0001; margin-top:15px;">
+     <div style="line-height:26px; width:85px; text-align:center; font-size:14px; font-weight:bold; background:url(tpls_img/bg18.jpg); color:#FFF;">展会介绍</div>
+  </div>
+  <div style="margin:10px 50px 10px 50px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%" style="line-height:25px;">更新时间：<?php echo(mysql_result($result,0,"time"));?></td>
+    <td style="line-height:25px;">浏览次数：<?php echo(mysql_result($result,0,"num"));?></td>
+  </tr>
+  <tr>
+    <td width="50%" style="line-height:25px;">展会时间：<?php echo(mysql_result($result,0,"start_time"));?>~<?php echo(mysql_result($result,0,"stop_time"));?></td>
+    <td style="line-height:25px;">展会联系方式：<?php echo(mysql_result($result,0,"lianxi"));?></td>
+  </tr>
+  <tr>
+    <td style="line-height:25px;">主办人：<?php echo(mysql_result($result,0,"zhuban"));?></td>
+    <td style="line-height:25px;">展会地址：<?php echo(mysql_result($result,0,"dizhi"));?></td>
+  </tr>
+  <tr>
+    <td colspan="2" style="line-height:25px;">展会参与企业：
+      <?php
+    if(mysql_result($result,0,"qiye")==""){
+       $canyu_qiye="发布者未填写参与企业信息<br>你可以浏览正文寻找";
+    }else{
+       $canyu_qiye=mysql_result($result,0,"qiye");
+    }
+    $canyu_qiye_arr = explode("_",$canyu_qiye);
+    for($i=1;$i<count($canyu_qiye_arr); $i++){
+    ?>
+      <input name="" type="button" value="<?php echo($canyu_qiye_arr[$i]);?>" style="margin-left:15px; line-height:20px; color:#333;" />
+      <?php
+    }
+    ?>
+    </td>
+    </tr>
+  </table>
+  </div>
+  <div style="margin:10px 0px 10px 0px; color:#666; font-size:14px; line-height:25px;">
+     <?php echo($content_txt_str);?> 
+  </div>
+  <div style="border-bottom:3px solid #cc0001; margin-top:15px;">
+     <div style="line-height:26px; width:85px; text-align:center; font-size:14px; font-weight:bold; background:url(tpls_img/bg18.jpg); color:#FFF;">位置信息</div>
+  </div>
+  <div style="line-height:30px;margin:10px 0px 10px 0px; color:#333; text-align:center; background:#CCC;"><span>展会地址：<?php echo(mysql_result($result,0,"dizhi")); $dizhi_arr = explode(" ",mysql_result($result,0,"dizhi")); $num_dizhi=count($dizhi_arr); $seach_baidu_dizhi=$dizhi_arr[count($dizhi_arr)-1];?></span><span style="margin-left:20px;"><?php echo(mysql_result($result,0,"dizhi_xiangxi"));?></span></div>
+  <div style="margin:10px 0px 10px 0px; color:#666; font-size:14px; width:800px; background:#CCC;">
+    <iframe width='800' height='410' class='ueditor_baidumap' src='<?php echo($http_host);?>/system<?php echo(mysql_result($result,0,"dizhi_baidu"));?><?php if($seach_baidu_dizhi!=""){echo("&city=".$seach_baidu_dizhi);}?>' frameborder='0'></iframe>
+  </div>
+  <!--内容内容部分 -->
+  </div>
+  <!--内容页左侧部分 -->
+  <!--内容页右侧部分 -->
+  <div style="float:right; width:285px;">
+    <!--{include"public_content_user.php"}-->
+    <!--图片推荐产品 -->
+    <?php
+    //获取石材供应最热文章11篇
+    $sql_hot1="SELECT * FROM $my_db WHERE bankuai='$bankuai' ORDER BY rand() LIMIT 0 , 2";
+    $result_hot1 = mysql_query($sql_hot1);
+    $num_result_hot1=mysql_num_rows($result_hot1);
+    //获取石材供应最热文章11篇
+	for($i=1;$i <=1;$i++){
+    ?> 
+    <a href="<?php echo($http_host);?>/index.php/to/<?php echo($contentye);?>_<?php echo(mysql_result($result_hot1,$i,"id"));?>.html" target="_blank" style="border:1px solid #dbdbdb; text-align:center; padding:10px 0px 0px 0px; margin:10px 0px 10px 0px; display:block; text-decoration:none; color:#333;">
+       <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_hot1,$i,"pic_name"));?>&&w=300" width="269" height="222">
+       <span style="line-height:30px;"><?php echo(mysql_result($result_hot1,$i,"name"));?></span>
+    </a>
+    <?php
+    }
+    ?>
+    <!--图片推荐产品 -->
+      <include file="include/public_content4"/>
+  
+  </div>
+  <!--内容页右侧部分 -->
+  <div style="clear:both;"></div>
+    <include file="include/public_content3"/>
+</div>
+<!--页面body部分 -->
+<div style="margin:0 auto; width:1200px; height:15px;"></div>
+<include file="include/public_fooer"/>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div style="margin:10px 0px 10px 0px; border:1px solid #dfdfdf;">
+    <!--样式一选项卡动作 -->
+    <div style=" text-align:right;">
+        <div class="lou5_2_3_xuan1" ka="lou5_2_3_xuan1_dd1" onmouseover="ka1(this)" style="line-height:30px; padding:0px 10px 0px 10px; float:left;border-left:1px solid #dfdfdf;border-top:3px solid #d54f58; border-bottom:1px solid #ffffff;background:#FFF;">企业排行</div>
+        <div class="lou5_2_3_xuan1" ka="lou5_2_3_xuan1_dd2" onmouseover="ka1(this)" style="line-height:30px; padding:0px 10px 0px 10px; float:left;border-left:1px solid #dfdfdf; border-top:3px solid #f7f7f7; border-bottom:1px solid #dfdfdf;background:#f7f7f7;">产品排行榜</div>
+        <a href="{:U('lists')}" target="_blank" style="display:block; color:#999; line-height:30px; padding:0px 10px 0px 10px; border-top:3px solid #f7f7f7; border-bottom:1px solid #dfdfdf; background:#f7f7f7;">更多产品>></a>
+        <div style="clear:both;"></div>
+    </div>
+    <div style="height:5px;"></div>
+    <div class="lou5_2_3_xuan1_yin" id="lou5_2_3_xuan1_dd1">
+        <foreach name="hotUserDiv" item="vo">
+            <a href="{:U('Myweb/index/index',array('userid'=>$vo['id']))}" target="_blank">{$vo.name}</a>
+        </foreach>
+    </div>
+    <div class="lou5_2_3_xuan1_yin" id="lou5_2_3_xuan1_dd2" style="display:none;">
+        <foreach name="hotDiv2" item="vo">
+            <a href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank">{$vo.name}</a>
+        </foreach>
+    </div>
+    <!--样式一选项卡动作 -->
+</div>

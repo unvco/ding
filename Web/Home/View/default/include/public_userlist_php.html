@@ -1,0 +1,56 @@
+<?php
+$search=$_GET["search"];//定义搜索关键词
+$user_leixing=$_GET["user_leixing"];//定义类型搜索词
+$user_dizhi=$_GET["user_dizhi"];//企业地区搜索词
+$user_vip=$_GET["user_vip"];//企业地区搜索词
+$user_shenhe=$_GET["user_shenhe"];//企业地区搜索词
+$paixu_hao=$_GET["paixu"];//排序搜索
+
+$search_jie=$search;//汉字会出现乱码，替换加解码
+$user_leixing_jie=$user_leixing;//汉字会出现乱码，替换加解码
+$user_dizhi_jie=$user_dizhi;//汉字会出现乱码，替换加解码
+
+$search=urldecode(strtr($search,"@","%"));//汉字会出现乱码，替换加解码
+$user_leixing=urldecode(strtr($user_leixing,"@","%"));//汉字会出现乱码，替换加解码
+$user_dizhi=urldecode(strtr($user_dizhi,"@","%"));//汉字会出现乱码，替换加解码
+
+
+//定义链接网址url搜索的关键词组和数据库搜索条件
+$url_search="";
+$url_search_paixu="";
+if($search!=""){$url_search=$url_search."/search/".$search_jie;  $search_total=$search_total." AND name LIKE '%".$search."%'";}
+if($user_leixing!=""){$url_search=$url_search."/user_leixing/".$user_leixing_jie;  $search_total=$search_total." AND qiye_leixing LIKE '%".$user_leixing."%'";}
+if($user_dizhi!=""){$url_search=$url_search."/user_dizhi/".$user_dizhi_jie;  $search_total=$search_total." AND dizhi LIKE '%".$user_dizhi."%'";}
+if($user_vip!=""){$url_search=$url_search."/user_vip/".$user_vip;  $search_total=$search_total." AND is_vip=".$user_vip;}
+if($user_shenhe!=""){$url_search=$url_search."/user_shenhe/".$user_shenhe;  $search_total=$search_total." AND is_shenhe=".$user_shenhe;}
+$url_search_paixu=$url_search;$url_search=$url_search."/paixu/".$paixu_hao;
+//定义链接网址url搜索的关键词组和数据库搜索条
+
+
+//定义数据库搜索排序条件
+$paixu="id DESC";//排序，默认按照id从大到小排序
+if($paixu_hao==2){$paixu="jiage ASC";}//价格从低到高
+elseif($paixu_hao==3){$paixu="jiage DESC";}//价格从高到低
+elseif($paixu_hao==4){$paixu="time DESC";}//价格从高到低
+elseif($paixu_hao==5){$paixu="num DESC";}//价格从高到低
+else{$paixu="id DESC";}//排序，默认按照id从大到小排序
+//定义数据库搜索排序条件
+
+//获取石材供总文章数
+$sql_total="SELECT * FROM $my_db".$search_total;
+$result_total= mysql_query($sql_total);
+$num_result_total=mysql_num_rows($result_total);
+//获取石材供总文章数
+
+//定义每页的文章数，计算页数
+$perNumber=12;
+$totalPage=ceil($num_result_total/$perNumber); 
+$startcount=($page-1)*$perNumber;
+//定义每页的文章数，计算页
+
+//获取当前页面的文章
+$sql="SELECT * FROM $my_db".$search_total." ORDER BY $paixu LIMIT $startcount , $perNumber";
+$result = mysql_query($sql);
+$num_result=mysql_num_rows($result);
+//获取当前页面的文章
+?>

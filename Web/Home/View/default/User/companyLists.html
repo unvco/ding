@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>企业列表--石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+    <include file="include/public_style"/>
+</head>
+
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<include file="include/public_url_address"/>
+<div class="row" style="width: 1200px;padding: 0px; margin: 0 auto;">
+    <include file="include/public_type_search"/>
+    <include file="include/public_list_order"/>
+</div>
+<style>
+    .content{ width:  1200px; padding: 0;margin: 0 auto;}
+    .content .left{width: 930px; float: left; margin-top: 20px;}
+    .content .right{width: 250px; float: right; margin-top: 20px;}
+</style>
+<div class="row content">
+    <div class="left">
+        <style>
+            .one_shejishi{border: 1px solid #dddddd; padding: 20px; margin-bottom: 15px;}
+            .one_shejishi .user_info{margin-bottom: 20px;}
+            .one_shejishi .user_info img{width: 118px; height: 116px; display: block;float: left;}
+            .one_shejishi .user_info .user_info1{float: left; width:600px; margin: 0 20px; line-height: 30px;}
+            .one_shejishi .user_info .user_info1 .name{font-size: 16px; font-weight: bold; line-height: 28px;}
+            .one_shejishi .user_info .user_info1 .introduce_left{float: left;margin-right: 50px; font-size: 13px;}
+            .one_shejishi .user_info .user_info1 .introduce_left span{color: #b5b5b5;}
+            .one_shejishi .user_info .user_info1 .shanchang span{color: #b5b5b5;}
+            .one_shejishi .user_info .user_info2{float: left; width: 130px;}
+            .one_shejishi .user_info .user_info2 .phone{width: 100px; text-align: center; line-height: 30px; background: #de4f53; border-radius: 15px; color: #ffffff; font-weight: bold; margin-top: 10px;}
+            .one_shejishi .user_info .user_info2 .phone:hover{background: #e46367;}
+            .one_shejishi .my_sheji img{width: 206px; height: 210px; display: block;float: left;margin-right: 20px;}
+            .one_shejishi .my_sheji .no_margin{margin-right: 0px;}
+        </style>
+        <for start="1" end="10">
+            <div class="one_shejishi">
+                <div class="user_info">
+                    <img src="">
+                    <div class="user_info1">
+                        <div class="name">丁文仔</div>
+                        <div>
+                            <div class="introduce_left">
+                                <span>所在城市</span> 北京 北京
+                            </div>
+                            <div class="introduce_left">
+                                <span>作品</span> 150套
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="shanchang">
+                            <span>擅长空间</span>
+                            餐厅,样板房,家居住宅,别墅豪宅,酒吧KTV,酒店,办公室,医院,会所,商豪宅,酒吧KTV,酒
+                        </div>
+                        <div class="shanchang">
+                            <span>预约数</span>
+                            500
+                        </div>
+                    </div>
+                    <div class="user_info2">
+                        <div class="phone">电话咨询</div>
+                        <div class="phone">在线咨询</div>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div class="my_sheji">
+                    <img src=""/>
+                    <img src=""/>
+                    <img src=""/>
+                    <img class="no_margin" src=""/>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </for>
+        <include file="include/public_list_yema"/>
+    </div>
+    <style>
+        .content .right .buy{display:block;border: 1px #a54759 solid; text-align: center;color: #a54759;line-height: 45px; font-size: 13px; font-weight: bold; margin-bottom: 15px;}
+        .content .right .new1{border: 1px #dddddd solid; padding: 0 10px; line-height: 25px; font-family: "微软雅黑", "黑体";margin-bottom: 10px;}
+        .content .right .new1 .title{line-height: 40px; border-bottom: 1px solid #e3e3e3;}
+        .content .right .new1 .list{display: block; font-family: "微软雅黑", "黑体"; font-size: 13px; color: #3b3139;}
+        .content .right .new1 .list .name{float: left;}
+        .content .right .new1 .list .name:hover{text-decoration: underline; color: #a54759;}
+        .content .right .new1 .list .person{float: right;}
+        .content .right .new1 .more{text-align: right;}
+    </style>
+    <div class="right">
+        <a class="buy">申请成为企业用户</a>
+        <a class="buy">我要发布设计</a>
+        <div class="new1">
+            <div class="title">经纪人课堂</div>
+            <a class="list"><div class="name">《房地产经纪管理办法》</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">自组织体系下的中原用人</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">台湾永庆房屋的调整与突</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">房地产经纪行业竞争新形</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list more">更多</a>
+        </div>
+        <div class="new1">
+            <div class="title">你问我答</div>
+            <a class="list"><div class="name">《房地产经纪管理办法》</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">自组织体系下的中原用人</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">台湾永庆房屋的调整与突</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">房地产经纪行业竞争新形</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list"><div class="name">关键时刻-印象在每一刻</div><div class="person">管理员</div><div style="clear: both"></div></a>
+            <a class="list more">更多</a>
+        </div>
+    </div>
+</div>
+<div style="clear: both;"></div>
+</div>
+<!--页面body部分 -->
+<include file="include/public_fooer"/>
+</body>
+</html>

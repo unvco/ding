@@ -1,0 +1,22 @@
+<style>
+	#tab_content { padding-top: 20px; padding-bottom: 50px; padding-left: 20px;}
+</style>
+<ul class="nav nav-tabs ul-edit">
+    <li class="active"><a class="" link="{:U('myInfo')}" rel="1" data-toggle="tab">个人资料</a></li>
+    <li><a class="" link="{:U('cutUserPicIndex')}" rel="1" data-toggle="tab">编辑个人头像</a></li>
+    <li><a class="" link="{:U('muban')}" rel="3" data-toggle="tab">网站模板修改</a></li>
+    <li><a class="" link="{:U('editPassword')}" rel="4" data-toggle="tab">修改密码</a></li>
+</ul>
+<div id='tab_content'>
+
+</div>
+
+
+<script>
+    loadURL("{:U('myInfo')}",'#tab_content');
+
+    $('.nav-tabs li a').click(function(){
+        var link=$(this).attr('link');
+        loadURL(link,'#tab_content');
+    });
+</script>

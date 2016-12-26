@@ -1,0 +1,54 @@
+<script language="javascript">
+    $(document).ready(function(){
+        $("#seach1_1").parent().css("background","url(__ROOT__/style/web/default/img/input_bg1.jpg) center bottom no-repeat");
+        $("#seach1_1").parent().css("color","#FFF");
+        $("#seach1_1").css("background","#860749");
+        $(".seach1_1").click(function(){
+            $(".seach1").css("background","");
+            $(".seach1").css("color","#710841");
+            $(".seach1_1").css("background","");
+            $(this).parent().css("background","url(__ROOT__/style/web/default/img/input_bg1.jpg) center bottom no-repeat");
+            $(this).parent().css("color","#FFF");
+            $(this).css("background","#860749");
+            $(".logoqu_7_input").val($(this).text());
+        });
+        $('.logoqu_6').click(function(){
+            var reg=new RegExp("%","g"); //创建正则RegExp对象
+            var sousuo_word=$(".logoqu_7_input").val();
+            if(sousuo_word=="找石材"){location.href="<?php echo($http_host);?>/index.php/to/listgongying/search/"+encodeURIComponent($(".logoqu_5").val()).replace(reg,"@")+".html";}
+            else if(sousuo_word=="找需求"){location.href="<?php echo($http_host);?>/index.php/to/listxuqiu/search/"+encodeURIComponent($(".logoqu_5").val()).replace(reg,"@")+".html";}
+            else if(sousuo_word=="找设备"){location.href="<?php echo($http_host);?>/index.php/to/listshebei/search/"+encodeURIComponent($(".logoqu_5").val()).replace(reg,"@")+".html";}
+            else if(sousuo_word=="找新闻"){location.href="<?php echo($http_host);?>/index.php/to/listxinwen/search/"+encodeURIComponent($(".logoqu_5").val()).replace(reg,"@")+".html";}
+            else if(sousuo_word=="找工程"){location.href="<?php echo($http_host);?>/index.php/to/listzhanshi/search/"+encodeURIComponent($(".logoqu_5").val()).replace(reg,"@")+".html";}
+            else if(sousuo_word=="找企业名"){location.href="<?php echo($http_host);?>/index.php/to/listqiye/search/"+encodeURIComponent($(".logoqu_5").val()).replace(reg,"@")+".html";}
+            else if(sousuo_word=="找用户名"){location.href="<?php echo($http_host);?>/index.php/to/listuser/search/"+encodeURIComponent($(".logoqu_5").val()).replace(reg,"@")+".html";}
+        });
+    });
+</script>
+<!--logo搜索区 -->
+<div style="background:url(__ROOT__/style/web/default/img/bgbig.jpg) center; height:280px;">
+    <div style="height:20px;"></div>
+    <table width="700" border="0" cellspacing="0" cellpadding="0" height="200px" bgcolor="#d4b080" align="center"><tr><td>
+        <div style="height:90px;">
+            <img src="__ROOT__/style/web/default/img/logo.gif" width="200" height="80" />
+        </div>
+        <div>
+            <div style="width:670px; margin:0 auto;">
+                <div class="seach1"><div id="seach1_1" class="seach1_1">找石材</div></div>
+                <div class="seach1"><div class="seach1_1">找需求</div></div>
+                <div class="seach1"><div class="seach1_1">找设备</div></div>
+                <div class="seach1"><div class="seach1_1">找新闻</div></div>
+                <div class="seach1"><div class="seach1_1">找工程</div></div>
+                <div class="seach1"><div class="seach1_1">找企业名</div></div>
+                <div class="seach1"><div class="seach1_1">找用户名</div></div>
+                <input class="logoqu_7_input" value="找石材" type="hidden" />
+                <div style=" clear:both;"></div>
+            </div>
+            <div style="width:670px; background:url(__ROOT__/style/web/default/img/input_bg.jpg); margin:0 auto; position:relative;">
+                <input class="logoqu_5" style=" width:573px;height:42px; border:0px; padding:0px 20px 0px 15px; margin:0px 0px 0px 1px; font-size:14px; color:#999;" type="text" value="" />
+                <div style=" width:60px; height:42px; position:absolute; top:0px; right:0px;" class="logoqu_6"></div>
+            </div>
+        </div>
+    </td></tr></table>
+</div>
+<!--logo搜索区 -->

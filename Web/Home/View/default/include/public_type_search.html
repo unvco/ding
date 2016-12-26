@@ -1,0 +1,38 @@
+<notempty name="type_search">
+    <!--分类选择部分 -->
+    <style>
+        .list_search{padding: 7px 15px; border: 1px solid #dddddd;}
+        .list_div{padding: 10px 0px;}
+        .bottom_dashed{border-bottom: 1px dashed #dddddd;}
+        .list_search_title{float:left;font-size: 14px; font-weight: bold; padding-left: 20px; padding-right: 20px; margin: 5px 0px; border-right: 1px solid #dddddd;}
+        .list_search_content{font-size: 13px;}
+        .list_search_content span{line-height: 30px;padding-left: 8px; padding-right: 8px;margin-left:15px;display: block;float: left;}
+        .list_search_content span:hover{background: #e4ba44;color: #ffffff; border-radius: 2px;}
+        .list_search_content .active{background: #e4ba44;color: #ffffff; border-radius: 2px;}
+    </style>
+    <div class="list_search">
+        <foreach name="type_search" item="vo" key="k" >
+            <div class="list_div bottom_dashed">
+                <div class="list_search_title" rel="{$k}">{$vo[0]}{$i}</div>
+                <div class="list_search_content">
+                    <span <php>if(!$_GET[$k]){echo('class="active"');}</php> rel="">不限</span>
+                    <foreach name="vo[1]" item="vovo" key="kk" >
+                        <span <php>if($_GET[$k]==$kk){echo('class="active"');}</php> rel="{$kk}">{$vovo}</span>
+                    </foreach>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+            <div style="clear: both;"></div>
+        </foreach>
+    </div>
+    <!--分类选择部分 -->
+</notempty>
+<script>
+    $('.list_search_content span').click(function(){
+        if(window.location.href.indexOf("?")==-1){
+            window.location.href=window.location.href+"?"+$(this).parent().parent().find('.list_search_title').attr('rel')+"="+$(this).attr('rel');
+        }else {
+            window.location.href=window.location.href+"&"+$(this).parent().parent().find('.list_search_title').attr('rel')+"="+$(this).attr('rel');
+        }
+    });
+</script>

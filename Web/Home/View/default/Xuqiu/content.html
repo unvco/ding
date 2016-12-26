@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{$info.name}</title>
+    <include file="include/public_style"/>
+</head>
+
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<include file="include/public_url_address"/>
+<!--页面body部分 -->
+<div style="margin:0 auto; width:1200px;">
+  <!--内容页左侧部分 -->
+  <div style="float:left; width:895px;">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+              <td width="365">
+                  <!--内容页标题图片部分 -->
+                  <div><img src="{$info.pic_name}" width="365" height="275" /></div>
+                  <!--内容页标题图片部分 -->
+              </td>
+              <td>
+                  <!--内容页标题部分 -->
+                  <div style="margin-left:15px; position:relative;">
+                      <div style="font-size:18px; display:block; font-weight:bold;">{$info.name}</div>
+                      <div style="line-height:40px; color:#999; border-bottom:1px double #dbdbdb; margin-bottom:8px;">
+                          <span>编号{$info.id}</span>&nbsp;
+                          <span>更新时间：{$info.updatetime|date="Y-m-d H:i:s",###}</span>&nbsp;
+                          <span>浏览次数：{$info.look_num}</span>
+                      </div>
+                      <div style="line-height:30px;"><b>价&nbsp;格：</b><span style="color:#F00; text-decoration:none; font-size:16px; font-weight:bold;border-bottom:1px double #dbdbdb;"><if condition="$vo.price eq 0">面议<else />{$vo.price}元</if></span><b style="margin-left:20px;">供应能力：</b>不限</div>
+                      <div style="line-height:30px; height:30px; overflow:hidden;"><b>原产地</b>：{$info.chandi}</div>
+                      <div style="line-height:30px; height:30px; overflow:hidden;"><b>供应地址</b>：{$info.user_address}(<span style="color:#999;">{$info.user_address_detail}</span>)</div>
+                      <div style="line-height:30px; border-bottom:1px double #dbdbdb; height:30px; overflow:hidden;"><b>联系人</b>：{$info.user_truename}<b style="margin-left:20px;">电&nbsp;话：</b><span style="color:#F00; text-decoration:none; font-size:16px; font-weight:bold;border-bottom:1px double #dbdbdb;">{$info.user_mobile}</span></div>
+                      <div style="line-height:30px;"><b>企业标签</b>：</div>
+                      <div style="line-height:30px;">
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td>
+                              <div style="line-height:25px; font-size:12px; padding:0px 10px 0px 10px; float:left; border:#066 1px solid; background:#FCF; text-align:center; margin-right:15px;">{$info.company_chanpin}</div>
+                          </td></tr></table>
+                      </div>
+                      <div>
+                          <div style="line-height:36px; background:url(tpls_img/bg14.jpg) no-repeat 4px 10px; padding-left:28px; color:#2a54a0; float:left; margin-right:50px;"><a href="mailto:{$info.user_email}">发送到邮箱</a></div>
+                          <div style="line-height:36px; background:url(tpls_img/bg15.jpg) no-repeat 4px 10px; padding-left:28px; color:#2a54a0; float:left; margin-right:50px;">收藏</div>
+                          <div style="line-height:36px; background:url(tpls_img/bg16.jpg) no-repeat 4px 10px; padding-left:28px; color:#2a54a0; float:left; margin-right:50px;"><a href="mailto:{$info.user_email}">发送到邮箱</a></div>
+                          <div style="clear:both;"></div>
+                      </div>
+                      <if condition="$vo.user_is_renzheng eq 1">
+                          <div style="width:146px; height:141px; position:absolute; z-index:2; left: 356px; top: 20px;"><img src="__ROOT__/style/web/default/img/bg17.jpg" width="146" height="141" /></div>
+                      </if>
+                  </div>
+                  <!--内容页标题部分 -->
+              </td>
+          </tr>
+      </table>
+      <!--内容内容部分 -->
+      <notempty name="userIntroduce">
+          <div style="border-bottom:3px solid #cc0001; margin-top:15px;">
+              <div style="line-height:26px; width:85px; text-align:center; font-size:14px; font-weight:bold; background:url(__ROOT__/style/web/default/img/bg18.jpg); color:#FFF;">用户简介</div>
+          </div>
+          <div style="margin:10px 0px 10px 0px; color:#666; font-size:14px; line-height:25px;text-indent: 2em;">
+              {$userIntroduce.user_content}...<a href="{:U('Myweb/index/index',array('userid'=>$info['user_id']))}" target="_blank" style=" color:#C30;">进入企业店铺</a>
+          </div>
+      </notempty>
+      <div style="border-bottom:3px solid #cc0001; margin-top:15px;">
+          <div style="line-height:26px; width:85px; text-align:center; font-size:14px; font-weight:bold; background:url(__ROOT__/style/web/default/img/bg18.jpg); color:#FFF;">产品介绍</div>
+      </div>
+      <div style="margin:10px 0px 10px 0px; color:#666; font-size:14px; line-height:25px;">
+          {$info.content}
+      </div>
+      <div style="border-bottom:3px solid #cc0001; margin-top:15px;">
+          <div style="line-height:26px; width:85px; text-align:center; font-size:14px; font-weight:bold; background:url(__ROOT__/style/web/default/img/bg18.jpg); color:#FFF;">位置信息</div>
+      </div>
+      <div style="margin:10px 0px 10px 0px; color:#666; font-size:14px; width:800px; background:#CCC;">
+          <iframe width='800' height='410' class='ueditor_baidumap' src='<?php echo($http_host);?>/system<?php echo(mysql_result($result_user,0,"dizhi_baidu"));?>' frameborder='0'></iframe>
+      </div>
+      <!--内容内容部分 -->
+  </div>
+  <!--内容页左侧部分 -->
+  <!--内容页右侧部分 -->
+  <div style="float:right; width:285px;">
+      <!--内容页右侧会员信息部分 -->
+      <include file="include/public_content_user"/>
+      <!--内容页右侧会员信息部分 -->
+      <!--图片推荐产品 -->
+      <include file="include/public_list_hotpic"/>
+      <!--图片推荐产品 -->
+      <include file="include/public_list_tuijian"/>
+  </div>
+  <!--内容页右侧部分 -->
+  <div style="clear:both;"></div>
+    <include file="include/public_content1"/>
+</div>
+<!--页面body部分 -->
+<div style="margin:0 auto; width:1200px; height:15px;"></div>
+<include file="include/public_fooer"/>
+</body>
+</html>

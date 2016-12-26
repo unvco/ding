@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>申请成为经纪人--石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+    <include file="include/public_style"/>
+    <style>
+        .row{padding: 0px;margin: 0px;}
+    </style>
+</head>
+<body>
+<include file="include/public_daohang"/>
+<style>
+    .jingjiren{background: #f2f2f2;}
+    .jingjiren .content{width: 1200px; margin: 0 auto;}
+    .jingjiren .margin{margin-bottom: 20px;}
+    .jingjiren .logo_content{padding-top: 50px;}
+    .jingjiren .logo_content .logo_content_1{float: left;color: #c61b29; font-size:20px; font-weight: bold; font-family: 'Courier New', Courier, monospace;}
+    .jingjiren .logo_content .logo_content_1 span{font-size: 40px;font-weight: bolder; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+    .jingjiren .logo_content .logo_content_2{float: left; font-size: 22px; color:#6c6a6a; font-family: "微软雅黑", "黑体"; border-left: 1px solid #6c6a6a;padding: 0 20px; margin-left: 30px; margin-top: 16px;}
+    .jingjiren .form_content{ border: 2px solid #d7d7d7; background: #ffffff; margin-top: 20px;padding: 50px;}
+    .jingjiren .input_div input{height: 35px;border-radius: 0;}
+    .jingjiren .input_div .button{width: 100%;height: 40px;}
+    .right{text-align: right; color: #898787;}
+    .form_content .form_content_2{border-left: 1px solid #6c6a6a; height: 500px;}
+</style>
+<div class="jingjiren">
+    <div class="content">
+        <div class="logo_content">
+            <div class="logo_content_1">
+                <span>石材吧</span> yqtyy.com
+            </div>
+            <div class="logo_content_2">
+                注册经纪人
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="row form_content">
+            <form id="login_form" class="form" action="{:U('registerJingJiRen')}" method="Post">
+                <div class="col-md-9 con-left">
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                            <span style="color:#c61b29; ">*</span>真实名字:
+                        </div>
+                        <div class="col-md-4 input_div">
+                            <input type="text" class="form-control" name="truename" id="truename" placeholder="真实名字">
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                            <span style="color:#c61b29; ">*</span>性别:
+                        </div>
+                        <div class="col-md-4 input_div">
+                            <select name="sex" class="form-control" id="sex">
+                                <option value="">请选择</option>
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                            <span style="color:#c61b29; ">*</span>手机号:
+                        </div>
+                        <div class="col-md-4 input_div">
+                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="手机号">
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                            <span style="color:#c61b29; ">*</span>QQ:
+                        </div>
+                        <div class="col-md-4 input_div">
+                            <input type="text" class="form-control" name="qq" id="qq" placeholder="QQ号">
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                            <span style="color:#c61b29; ">*</span>身份证:
+                        </div>
+                        <div class="col-md-4 input_div">
+                            <input type="text" class="form-control" name="idcard" id="idcard" placeholder="身份证">
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                            <span style="color:#c61b29; ">*</span>地址:
+                        </div>
+                        <div class="col-md-10 input_div">
+                            <select class="form-control" id="sheng" name="province" style="width: 150px;float: left;" ></select>
+                            <span style="float: left; display: block; margin: 0 10px;"> 省</span>
+                            <select class="form-control" id="shi" name="city" style="width: 150px;float: left;"></select>
+                            <span style="float: left; display: block; margin: 0 10px;"> 市</span>
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                        </div>
+                        <div class="col-md-10 input_div">
+                            <select class="form-control" id="xian" name="country" style="width: 150px;float: left;" ></select>
+                            <span style="float: left; display: block; margin: 0 10px;"> 县</span>
+                            <select class="form-control" id="xiang" name="street" style="width: 150px;float: left;"></select>
+                            <span style="float: left; display: block; margin: 0 10px;"> 镇或街道</span>
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                            <span style="color:#c61b29; "></span>详细地址:
+                        </div>
+                        <div class="col-md-6 input_div">
+                            <input type="text" class="form-control" name="address_detail" id="address_detail" placeholder="详细地址">
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="col-md-2 right">
+                        </div>
+                        <div class="col-md-4 input_div">
+                            <input type="submit" class="btn btn-success button" name="submit" value="确 定">
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 form_content_2">
+
+                </div>
+            </form>
+            <script>
+                $(function(){initLocation({sheng_val:"四川",shi_val:"成都",xian_val:"成华区",xiang_val:"保和街道"});})
+
+                $('#login_form').ajaxForm({success:success,beforeSend:checkForm});
+                function success(data){
+                    if(data.errNum==0){
+                        jBox.messager(data.retData);
+                        window.location.href="{:U('Space/Index/index')}";
+                    }else{
+                        jBox.messager(data.errMsg);
+                    }
+                }
+                function checkForm(){
+                    if('' === $('input[name=truename]').val()){
+                        jBox.messager("真实名字不能为空");
+                        return false;
+                    }
+                    if('' === $('#sex').val()){
+                        jBox.messager("请选择性别");
+                        return false;
+                    }
+                    if('' === $('input[name=mobile]').val()){
+                        jBox.messager("手机不能为空");
+                        return false;
+                    }
+                    if('' === $('input[name=qq]').val()){
+                        jBox.messager("qq不能为空");
+                        return false;
+                    }
+                    if('' === $('input[name=idcard]').val()){
+                        jBox.messager("身份证不能为空");
+                        return false;
+                    }
+                }
+            </script>
+
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+<div style="clear: both;"></div>
+<include file="include/public_fooer"/>
+</body>
+</html>

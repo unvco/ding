@@ -1,0 +1,123 @@
+<script src="__ROOT__/style/upload/uploadstyle/js/jquery.min.js" type="text/javascript"></script>
+<script src="__ROOT__/style/upload/uploadstyle/js/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__ROOT__/style/upload/uploadstyle/css/uploadify.css">
+
+<link rel="stylesheet" type="text/css" href="__ROOT__/style/upload/imgareaselect/css/imgareaselect-default.css" />
+<script type="text/javascript" src="__ROOT__/style/upload/imgareaselect/scripts/jquery.imgareaselect.pack.js"></script>
+
+<table style="width: 90%;" align="center">
+	<tr>
+		<td width="50%">
+			<div id='oriImage' class="img_v"></div>
+			<input type="file" name="file_cut" id="file_cut" />
+
+			<div class="frame" style="float: left">
+				<img id="photo" src="__ROOT__/uploads/flower2.jpg" />
+			</div>
+			<div class="frame" style="float: left; margin-left: 20px;">
+				<img id="result_cutimg" src="<empty name="info">__ROOT__/uploads/flower2.jpg<else />{$info.headerpic}</empty>" style="width: 200px; height: 200px;" />
+				<br><br><br>
+				<input type="button" value="确认截图" id="postcut" style="font-size: 16px; width: 100px; height: 30px;">
+			</div>
+
+			<div class="frame" style="margin: 0 1em; width: 100px; height: 100px; display: none;" id="preview_div">
+				<div id="preview" style="width: 100px; height: 100px; overflow: hidden;">
+					<img id="preview_img" src="__ROOT__/uploads/flower2.jpg" style="width: 100px; height: 100px;" />
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+
+
+<script type="text/javascript">
+	//初始化要截取图片的长度和高度
+	var cutpicwidth=300;
+	var cutpicheight=300;
+
+	//	定义截取到的全局坐标参数
+	var selectionx1;
+	var selectiony1;
+	var selectionx2;
+	var selectiony2;
+	var selectionwidth;
+	var selectionheight;
+	//定义截图要处理的图片地址
+	var cutpicurl='__ROOT__/uploads/flower2.jpg';
+
+	function preview(img, selection) {
+		if (!selection.width || !selection.height)
+			return;
+		var scaleX = 100 / selection.width;
+		var scaleY = 100 / selection.height;
+		$('#preview img').css({
+			width: Math.round(scaleX * cutpicwidth),
+			height: Math.round(scaleY * cutpicheight),
+			marginLeft: -Math.round(scaleX * selection.x1),
+			marginTop: -Math.round(scaleY * selection.y1)
+		});
+
+		selectionx1=selection.x1;
+		selectiony1=selection.y1;
+		selectionx2=selection.x2;
+		selectiony2=selection.y2;
+		selectionwidth=selection.width;
+		selectionheight=selection.height;
+	}
+	$(function () {
+		$('#photo').imgAreaSelect({ aspectRatio: '1:1', handles: true, fadeSpeed: 200, onSelectChange: preview });
+		$('#postcut').click(function(){
+//			alert(selectionx1+'----'+selectiony1+'-----'+selectionwidth+'-----'+selectionheight+'------'+cutpicurl);
+			$.ajax({
+				url:"{:U('Upload/Upload/cutUserAction')}",
+				type:"POST",
+				data:{x1:selectionx1,y1:selectiony1,w:selectionwidth,h:selectionheight,url:cutpicurl},
+				dataType:"json",
+				success:function(data){
+					$("#result_cutimg").attr('src',data.retData['url']);
+				},
+				error:function(XMLHttpRequest, textStatus, errorThrown){
+					console.log(XMLHttpRequest.status);
+				}
+			});
+
+		});
+	});
+
+	$(function() {
+		$("#file_cut").uploadify({
+			'auto': true,//设置为假，如果你不希望的文件自动上传时，他们被添加到队列。如果设置为假，可以使用上传方法触发上传。
+			'formData': {
+				'timestamp': '136987569856',
+				'token': 'asdsa45d4s4454a54d54f5d2v1c2b45f21s245df2'
+			},
+			'swf': '__ROOT__/style/upload/uploadstyle/css/uploadify.swf',//到uploadify.swf文件的路径。如果可能的话，这条路径应该是相对的，如果可能的话，避免问题，但也将接受相对于当前脚本的路径。
+			'uploader':"{:U('Upload/Upload/uploadUser')}",//在服务器端上传脚本的路径（Uploadify php）。这应该是一个相对于根的路径是可能的，以避免问题，但它也将接受一个路径，是相对于当前的脚本。有关设置自定义服务器端上传脚本的详细信息，参见我们的文章设置一个自定义服务器端上传脚本。
+			'onUploadSuccess': function (file, data, response) {
+				data=JSON.parse(data);
+				$('#' + file.id).find('.data').html(data.errMsg);
+				$("#photo").attr('src',data.retData['url']);
+				$("#preview_img").attr('src',data.retData['url']);
+				cutpicurl=data.retData['url'];
+				cutpicwidth=data.retData['width'];
+				cutpicheight=data.retData['height'];
+			},
+			'removeTimeout': 1000,//1000秒后移除队列
+		});
+	});
+
+
+	//改变按钮内容
+	function changeBtnText() {
+		$('#file_upload').uploadify('settings','buttonText','BROWSE');
+	}
+
+	//读取按钮内容
+	function returnBtnText() {
+		alert('The button says ' + $('#file_upload').uploadify('settings','buttonText'));
+	}
+
+</script>
+
+</body>
+</html>

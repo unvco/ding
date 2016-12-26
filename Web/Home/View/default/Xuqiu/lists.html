@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <!-- Tell the browser to be responsive to screen width -->
+   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>石材需求列表--石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+   <include file="include/public_style"/>
+   <style>
+      .row{padding: 0px;margin: 0px;}
+   </style>
+</head>
+
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<include file="include/public_url_address"/>
+<div class="row" style="width: 1200px;padding: 0px; margin: 0 auto;">
+   <include file="include/public_type_search"/>
+   <include file="include/public_list_order"/>
+   <!--页面body部分 -->
+   <div class="row">
+      <style>
+         .listdiv{float:left; width:895px; margin-top: 15px;}
+         .listdiv_child{padding: 0;border-bottom: 1px dashed #dddddd; padding: 10px 15px;}
+         .listdiv_child:hover{background: #f2f2f2;}
+         .listdiv .left{float: left; width: 620px;}
+         .listdiv .right{float: right; width: 210px;}
+         .listdiv_name a{color: #256ba9; font-family: '微软雅黑', '黑体'; line-height: 30px; font-weight: bold; font-size: 15px;}
+         .listdiv_content{color:#666666; font-size: 13px; line-height: 25px;}
+         .listdiv_user{color:#ffffff; font-size: 13px;padding:2px 4px; background: #ff9d03;display: block;float: left;}
+         .listdiv_user:hover{text-decoration:none;color: #5f002c;}
+         .listdiv_type{color:#666666; font-size: 13px;padding:2px 14px 2px 0px; display: block;float: left;}
+         .listdiv_content_2{color:#666666; font-size: 13px; line-height: 25px;}
+         .listdiv_content_2 span{color:#ff9d03;font-weight: bold; font-size: 15px;}
+      </style>
+      <div class="listdiv">
+         <!--列表部分 -->
+         <foreach name="data" item="vo">
+            <div class="row listdiv_child">
+               <div class="left">
+                  <div class="listdiv_name">
+                     <a href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank">{$vo.name}</a>
+                  </div>
+                  <div>
+                     <a class="listdiv_type">{$vo.common_type}</a>
+                     <a class="listdiv_user">{$vo.user_name}</a>
+                     <div style="clear: both;"></div>
+                  </div>
+                  <div class="listdiv_content"><php>echo(mb_substr(strip_tags(html_entity_decode($vo['content'])),0,46,'utf-8'));</php>...</div>
+               </div>
+               <div class="right">
+                  <div class="listdiv_content_2">
+                     接受价格：<if condition="$vo.price eq 0">面议<else /><span>{$vo.price}元</span></if><br>
+                     发布时间：<span>{$vo.updatetime|date="Y-m-d",###}</span><br>
+                     点击次数：<span>{$vo.look_num}</span>
+                  </div>
+               </div>
+               <div style="clear: both;"></div>
+            </div>
+         </foreach>
+         <!--列表部分 -->
+         <include file="include/public_list_yema"/>
+      </div>
+      <div style="float:right; width:285px; margin-top: 15px;">
+         <include file="include/public_list_hotpic"/>
+         <include file="include/public_list_hot"/>
+         <include file="include/public_list_tuijian"/>
+      </div>
+      <div style="clear:both;"></div>
+   </div>
+</div>
+<!--页面body部分 -->
+<include file="include/public_fooer"/>
+</body>
+</html>

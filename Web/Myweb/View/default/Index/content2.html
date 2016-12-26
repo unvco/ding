@@ -1,0 +1,116 @@
+<include file="include/public_header"/>
+<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
+    <!--内容 -->
+    <div style="width:1000px; margin:0px auto; background:#FFF;"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td>
+        <!--左边 -->
+        <include file="include/public_1"/>
+        <!--左边 -->
+
+        <!--右边 -->
+        <div style="width:730px; float:left; margin-left:25px; margin-top:20px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td height="43px" background="yangshi/contentbg1.jpg">
+                        <span style=" font-size:13px; line-height:20px; display:block; float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你现在所在的位置：</span>
+                        <a style=" font-size:13px; line-height:20px; display:block; float:left;" href="/">首页</a>
+                        <a style=" font-size:13px; line-height:20px; display:block; float:left;">&nbsp;>&nbsp;联系方式</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td background="yangshi/contentbg2.jpg">
+                        <div style="margin:25px;">
+                            <div style="line-height:30px; color:#666; font-size:14px;">
+                                <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td colspan="4" align="center" style="font-weight:bold; font-size:16px;">个人信息</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="73" style="font-size:13px; font-weight:bold;">联系人：</td>
+                                        <td width="178">{$userInfo['truename']}</td>
+                                        <td width="72" style="font-size:13px; font-weight:bold;">邮箱：</td>
+                                        <td width="177">{$userInfo['email']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size:13px; font-weight:bold;">手机：</td>
+                                        <td>{$userInfo['mobile']}</td>
+                                        <td style="font-size:13px; font-weight:bold;">QQ：</td>
+                                        <td>{$userInfo['qq']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size:13px; font-weight:bold;">地址：</td>
+                                        <td colspan="3">{$userInfo['address']}&nbsp;&nbsp;{$userInfo['address_detail']}</td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td colspan="4" align="center" style="font-weight:bold; font-size:16px;">企业信息</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="77" style="font-size:13px; font-weight:bold;">企业名：</td>
+                                        <td width="172">{$companyInfo['name']}</td>
+                                        <td width="77" style="font-size:13px; font-weight:bold;">成立年份：</td>
+                                        <td width="174">{$companyInfo['birthday']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size:13px; font-weight:bold;">经营类型：</td>
+                                        <td>{$companyInfo['xingzhi']}</td>
+                                        <td style="font-size:13px; font-weight:bold;">企业性质：</td>
+                                        <td>{$companyInfo['xingzhi']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size:13px; font-weight:bold;">企业模式：</td>
+                                        <td>{$companyInfo['moshi']}</td>
+                                        <td style="font-size:13px; font-weight:bold;">法人代表：</td>
+                                        <td>{$companyInfo['faren']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size:13px; font-weight:bold;">员工人数：</td>
+                                        <td>{$companyInfo['renshu']}</td>
+                                        <td style="font-size:13px; font-weight:bold;">年营业额：</td>
+                                        <td>{$companyInfo['money_year']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size:13px; font-weight:bold;">企业标签：</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">{$companyInfo['jingying']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size:13px; font-weight:bold;">主要产品：</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">{$companyInfo['chanpin']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size:13px; font-weight:bold;">经营简介：</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">{$companyInfo['content']}</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="18px" background="yangshi/contentbg3.jpg">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <!--右边 -->
+    </td></tr></table>
+    </div>
+    <!--内容 -->
+</td></tr></table>
+<include file="include/public_fooer"/>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新闻资讯列表--石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+    <include file="include/public_style"/>
+    <style>
+        .row{padding: 0px;margin: 0px;}
+    </style>
+</head>
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<!--页面导航链接部分-->
+<style>
+    .url_address{width: 1200px; line-height:45px;margin: 0 auto; font-size: 13px;}
+    .url_address a{color: #676767; display: block; margin-right: 10px;float: left;}
+    .url_address span{color: #676767; display: block; margin-right: 10px; float: left;}
+</style>
+<div class="url_address">
+    <a>信息发布</a>
+    <span>></span>
+    <a>选择设备类别</a>
+    <div style="clear: both;"></div>
+</div>
+<!--页面导航链接部分-->
+<div class="row" style="width: 1200px; margin: 0 auto; border: 1px solid #dadada; padding: 20px;">
+    <style>
+        .level1{line-height: 40px; border-bottom: 1px dotted #e3e3e3; color: #676767;font-size: 14px; font-weight: bold;}
+        .level2{float: left; line-height:20px; color: #676767; font-size: 13px; display: block; padding: 5px;margin-left: 20px;}
+        .level2:hover{color: #ffffff; background:#9f191f; border-radius: 5px; text-decoration: none;}
+    </style>
+    <foreach name="typeCreate" item="vo">
+        <if condition="$vo.level eq 0">
+            <div style="clear: both;"></div>
+            <div class="level1">{$vo.name}</div>
+            <div style="clear: both;"></div>
+            <else/>
+            <a class="level2" href="{:U('publicShebei',array('type'=>$vo['id']))}">{$vo.name}</a>
+        </if>
+    </foreach>
+    <div style="clear: both;"></div>
+</div>
+<!--页面body部分 -->
+<include file="include/public_fooer"/>
+</body>
+</html>

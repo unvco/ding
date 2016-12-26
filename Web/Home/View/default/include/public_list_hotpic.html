@@ -1,0 +1,6 @@
+<foreach name="hotDiv" item="vo">
+    <a href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank" style="border:1px solid #dbdbdb; text-align:center; padding:10px 0px 0px 0px; margin:0px 0px 10px 0px; display:block; text-decoration:none; color:#333;">
+        <img style="border:0px;" src="{$vo.pic_name}" width="269" height="222"><br>
+        <span style="line-height:30px;">{$vo.name}</span>
+    </a>
+</foreach>

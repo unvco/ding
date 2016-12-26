@@ -1,0 +1,37 @@
+<script src="__ROOT__/style/upload/uploadstyle/js/jquery.min.js" type="text/javascript"></script>
+<script src="__ROOT__/style/upload/uploadstyle/js/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__ROOT__/style/upload/uploadstyle/css/uploadify.css">
+
+<link rel="stylesheet" type="text/css" href="__ROOT__/style/upload/imgareaselect/css/imgareaselect-default.css" />
+<script type="text/javascript" src="__ROOT__/style/upload/imgareaselect/scripts/jquery.imgareaselect.pack.js"></script>
+
+<div class="row" style="padding: 20px 50px;">
+	<input type="file" name="file_cut" id="file_cut" />
+</div>
+
+
+<script type="text/javascript">
+
+	$(function() {
+		$("#file_cut").uploadify({
+			'auto': true,//设置为假，如果你不希望的文件自动上传时，他们被添加到队列。如果设置为假，可以使用上传方法触发上传。
+			'formData': {
+				'action': '{$action}',
+			},
+			'swf': '__ROOT__/style/upload/uploadstyle/css/uploadify.swf',//到uploadify.swf文件的路径。如果可能的话，这条路径应该是相对的，如果可能的话，避免问题，但也将接受相对于当前脚本的路径。
+			'uploader':"{:U('Edit/uploadSetPicAction')}",//在服务器端上传脚本的路径（Uploadify php）。这应该是一个相对于根的路径是可能的，以避免问题，但它也将接受一个路径，是相对于当前的脚本。有关设置自定义服务器端上传脚本的详细信息，参见我们的文章设置一个自定义服务器端上传脚本。
+			'onUploadSuccess': function (file, data, response) {
+				data=JSON.parse(data);
+				if(data.errNum==0){
+					location.reload();
+				}
+			},
+			'removeTimeout': 1000,//1000秒后移除队列
+		});
+	});
+
+
+</script>
+
+</body>
+</html>

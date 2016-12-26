@@ -1,0 +1,52 @@
+<h2 class="contentTitle">类型配置管理（动作：<if condition="$info.id neq ''">修改<else />添加</if>）</h2>
+<form method="post" action="{:U('add')}" class="pageForm required-validate" onsubmit="return validateCallback(this, gotonewslist)">
+	<div class="pageFormContent" layoutH="115">
+		<dl class="nowrap">
+			<dt>父类别：</dt>
+			<dd>
+				<input type="hidden" name="orgLookup.id" value="{$info.fatherid}"/>
+				<input type="text" readonly="true" class="required" name="orgLookup.orgName" value="{$info.fatheridName}" suggestFields="orgNum,orgName" suggestUrl="" lookupGroup="orgLookup" />
+				<a class="btnLook" href="{:U('colorTypeSelectBack')}" lookupGroup="orgLookup">查找带回</a>
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>绑定关键词：</dt>
+			<dd>
+				<input name="Admin[keyword]" class="required" alt="" value="公用石材颜色" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>类别名：</dt>
+			<dd>
+				<input name="Admin[name]" class="required" alt="" value="{$info.name}" type="text" style="width: 250px;">
+				<input type="hidden" name="Admin[id]" value="{$info.id}"/>
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>排序号：</dt>
+			<dd>
+				<input name="Admin[position]" class="required" alt="" value="{$info.position}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+		<dl class="nowrap">
+			<dt>备注：</dt>
+			<dd>
+				<input name="Admin[remark1]" class="required" alt="" value="{$info.remark1}" type="text" style="width: 250px;">
+			</dd>
+		</dl>
+	</div>
+	
+	<div class="formBar">
+		<ul>
+			<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+			<li><div class="button"><div class="buttonContent"><button class="close" type="button">关闭</button></div></div></li>
+		</ul>
+	</div>  
+
+</form>
+<script language="JavaScript">
+	function gotonewslist(data){
+		dialogformcallback(data,'{:CONTROLLER_NAME}_Lists');
+	}
+
+</script>

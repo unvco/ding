@@ -1,0 +1,44 @@
+<include file="include/public_header"/>
+
+<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
+    <!--内容 -->
+    <div style="width:1000px; margin:0px auto; background:#FFF"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td>
+        <!--左边 -->
+        <include file="include/public_1"/>
+        <!--左边 -->
+
+        <!--右边 -->
+        <div style="width:730px; float:left; margin-left:25px; margin-top:20px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td height="43px" background="yangshi/contentbg1.jpg">
+                        <span style=" font-size:13px; line-height:20px; display:block; float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你现在所在的位置：</span>
+                        <a style=" font-size:13px; line-height:20px; display:block; float:left;">首页</a>
+                        <a style=" font-size:13px; line-height:20px; display:block; float:left;">&nbsp;>&nbsp;企业概况</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td background="yangshi/contentbg2.jpg">
+                        <div style="margin:25px; line-height:150%;">
+                            <div style="margin-top:20px;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>
+                                    <td style="line-height:200%;">
+                                        {$companyInfo['content']}
+                                    </td>
+                                </tr></table></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="18px" background="yangshi/contentbg3.jpg">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <!--右边 -->
+    </td></tr></table>
+    </div>
+    <!--内容 -->
+</td></tr></table>
+
+
+<include file="include/public_fooer"/>

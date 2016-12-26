@@ -1,0 +1,34 @@
+<!--内容页右侧推荐部分 -->
+    <!--
+    <?php
+    //获取石材供应最热文章11篇
+    $sql_hot="SELECT * FROM $my_db WHERE bankuai='gongying' or bankuai='shebei' ORDER BY rand() LIMIT 0 , 11";
+    $result_hot = mysql_query($sql_hot);
+    $num_result_hot=mysql_num_rows($result_hot);
+    //获取石材供应最热文章11篇
+    ?>
+    -->
+    <div style="margin-top:20px; border:1px solid #dbdbdb;">
+       <div style="line-height:35px; font-size:18px; padding-left:5px; background:#fafafa; border-bottom:1px solid #dbdbdb;">供应产品推荐</div>
+       <div style="padding:10px;">
+          <div style="padding-bottom:20px; border-bottom:1px solid #dbdbdb; margin-bottom:8px;">
+             <div style="float:left;"><img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_hot,0,"pic_name"));?>&&w=300" width="94" height="67" /></div>
+             <div style="float:left; width:150px; margin-left:10px; line-height:22px;">
+                <a href="<?php echo($http_host);?>/index.php/to/<?php if(mysql_result($result_hot,0,"bankuai")=="gongying"){echo("content1");}elseif(mysql_result($result_hot,0,"bankuai")=="shebei"){echo("content3");}else{echo("content1");}?>_<?php echo(mysql_result($result_hot,0,"id"));?>.html" target="_blank" style="font-size:14px; color:#039; height:22px; display:block; overflow:hidden;"><?php echo(mysql_result($result_hot,0,"name"));?></a>
+                <div>价格：<span style="color:#C00;"><?php if((mysql_result($result_hot,0,"jiage")==0)||(mysql_result($result_hot,0,"jiage")=="")){echo("不限");}else{echo(mysql_result($result_hot,0,"jiage")."元");}?></span></div>
+                <div>供应能力：<?php if((mysql_result($result_hot,0,"shuliang")==0)||(mysql_result($result_hot,0,"shuliang")=="")){echo("不限");}else{echo(mysql_result($result,0,"shuliang"));}?></div>
+             </div>
+             <div style="clear:both;"></div>
+          </div>
+          <div style="background:url(tpls_img/bg3.jpg) no-repeat;">
+          <?php 
+		  for($i=1;$i <=10;$i++){
+		  ?>
+          <a href="<?php echo($http_host);?>/index.php/to/<?php if(mysql_result($result_hot,$i,"bankuai")=="gongying"){echo("content1");}elseif(mysql_result($result_hot,$i,"bankuai")=="shebei"){echo("content3");}else{echo("content1");}?>_<?php echo(mysql_result($result_hot,$i,"id"));?>.html" target="_blank" style="line-height:25px;display:block; color:#333; height:25px; overflow:hidden; margin-left:32px;"><?php echo(mysql_result($result_hot,$i,"name"));?><span style="color:#999;font-size:12px;">(<?php if((mysql_result($result_hot,$i,"jiage")==0)||(mysql_result($result_hot,$i,"jiage")=="")){echo("不限");}else{echo(mysql_result($result,$i,"jiage")."元");}?>)</span></a>
+          <?php
+		  }
+		  ?>
+          </div>
+       </div>
+    </div>
+    <!--内容页右侧推荐部分 -->

@@ -1,0 +1,78 @@
+<style>
+    .daohang_div{}
+</style>
+<!--导航部分 -->
+<div class="daohang_list">
+    <table width="1200" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
+        <div class="daohang">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr><td width="210px">
+                    <div class="daohang_all">
+                        <span class="daohang_fenlei_all">所有分类导航&nbsp;&nbsp;</span>
+                    </div>
+                </td><td>
+                    <div class="daohang_lei"><span><a href="{:U('Index/index')}">首页</a></span></div>
+                    <div class="daohang_lei"><span><a href="{:U('Gongying/lists')}">石材供应</a></span></div>
+                    <div class="daohang_lei"><span><a href="{:U('Shebei/lists')}">设备供应</a></span></div>
+                    <div class="daohang_lei"><span><a href="{:U('Xuqiu/lists')}">需求列表</a></span></div>
+                    <div class="daohang_lei"><span><a href="{:U('Zhanshi/lists')}">案例欣赏</a></span></div>
+                    <div class="daohang_lei"><span><a href="{:U('User/companyLists')}">企业黄页</a></span></div>
+                    <div class="daohang_lei" onmouseover="yindiv('.daohang_lei_user')" onmouseout="yindiv('.daohang_lei_user')">
+                        <span><a href="{:U('User/userLists')}">用户列表</a></span>
+                        <div class="daohang_lei_user" style="background:#F03; position:absolute; width:130px; font-size:16px; font-weight:bold; text-align:center; color:#FFF; line-height:30px; display:none;">
+                            <a href="{:U('User/jingjirenList')}" style="display:block; color:#FFF;">经纪人</a>
+                            <a href="{:U('User/shejishiList')}" style="display:block; color:#FFF;">设计师</a>
+                            <a href="{:U('User/companyLists')}" style="display:block; color:#FFF;">企业用户</a>
+                            <a href="{:U('User/userLists')}" style="display:block; color:#FFF;">所有用户</a>
+                        </div>
+                    </div>
+                    <div class="daohang_lei"><span><a href="{:U('Zhanhui/lists')}">石材展会</a></span></div>
+                    <div class="daohang_lei"><span><a href="{:U('News/lists')}">新闻列表</a></span></div>
+                </td><td width="140px">
+                    <div style="position:relative;">
+                        <div class="daohang_kuaijie"  onmouseover="yindiv('.daohang_kuaijie_2')" onmouseout="yindiv('.daohang_kuaijie_2')">
+                            <div class="daohang_kuaijie_1"><span>快捷导航&nbsp;&nbsp;</span></div>
+                            <!--快捷导航隐藏菜单 -->
+                            <div class="daohang_kuaijie_2">
+                                <div class="daohang_kuaijie_2_1">
+                                    <empty name="user_info">
+                                        <div style=" padding:10px 15px 5px 15px; line-height:20px; color:#666; font-size:12px; text-align:center;">您还未登陆，请登陆！！！</div>
+                                        <div style="background:url(__ROOT__/style/web/default/img/bg21.jpg); line-height:40px; width:210px; margin:10px 0px 0px 40px; text-align:center; color:#FFF; font-weight:bold; font-size:18px;" onclick="jBox.open('get:{:U('Login/loginTable')}', '登陆', 400, 250, { buttons: {} });">用户登陆</div>
+                                        <a style="background:url(__ROOT__/style/web/default/img/bg21.jpg); line-height:40px; width:210px; margin:10px 0px 0px 40px; text-align:center; color:#FFF; font-weight:bold; font-size:18px; display:block;" href="{:U('Login/register')}">快速注册</a>
+                                        <div style="height:20px;"></div>
+
+                                        <else/>
+
+                                        <div style=" padding:10px 15px 5px 15px; line-height:20px; color:#666; font-size:12px; text-align:center;">{$user_info.name}&nbsp;&nbsp;欢迎您</div>
+                                        <a style="background:url(__ROOT__/style/web/default/img/bg21.jpg); line-height:40px; width:210px; margin:10px 0px 0px 40px; text-align:center; color:#FFF; font-weight:bold; font-size:18px; display:block;" href="{:U('Myweb/index/index',array('userid'=>$user_info['id']))}">进入店铺</a>
+                                        <a style="background:url(__ROOT__/style/web/default/img/bg21.jpg); line-height:40px; width:210px; margin:10px 0px 0px 40px; text-align:center; color:#FFF; font-weight:bold; font-size:18px; display:block;" href="{:U('Space/index/index')}">进入个人管理</a>
+                                        <a style="background:url(__ROOT__/style/web/default/img/bg21.jpg); line-height:40px; width:210px; margin:10px 0px 0px 40px; text-align:center; color:#FFF; font-weight:bold; font-size:18px; display:block;" href="{:U('Admin/index/index')}">管理员中心</a>
+                                        <a style="background:url(__ROOT__/style/web/default/img/bg21.jpg); line-height:40px; width:210px; margin:10px 0px 20px 40px; text-align:center; color:#FFF; font-weight:bold; font-size:18px; display:block;" onclick="logout()">退出</a>
+                                        <script language=JavaScript>
+                                            //公共页面登陆退出
+                                            function logout(){
+                                                if (confirm("您确定要退出控制面板吗？")){
+                                                    $.post("{:U('Login/logout')}", {action:"zhuxiao"},function(data,status){
+                                                        if(data.errNum==0){
+                                                            jBox.messager(data.retData);
+                                                            location.href=location.href;
+                                                        }else{
+                                                            jBox.messager('请检查网络，或者重试');
+                                                        }
+                                                    });
+                                                }
+                                                return false;
+                                            }
+                                            //公共页面登陆退出
+                                        </script>
+                                    </empty>
+                                </div>
+                            </div>
+                            <!--快捷导航隐藏菜单 -->
+                        </div>
+                    </div>
+                </td></tr></table>
+        </div>
+    </td></tr></table>
+</div>
+<!--导航部分 -->

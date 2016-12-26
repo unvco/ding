@@ -1,0 +1,15 @@
+<div style="border:1px solid #dbdbdb; padding:12px;">
+    <div style="text-align:center; background:#fafafa;"><img style=" margin:8px;" src="{$info.user_headerpic}" width="196" height="196"></div>
+    <div style=" line-height:30px;">楼主身份：<if condition="$info.company_name">企业会员<else />普通会员</if>&nbsp;&nbsp;<img src="__ROOT__/style/web/default/img/bg19.jpg" width="33" height="20" /></div>
+    <div style=" line-height:30px;">楼主名称：{$info.user_name}</div>
+    <div style=" line-height:30px;">企业名称：<if condition="$info.company_name">{$info.company_name}<else />楼主没有开通企业空间</if></div>
+    <div style="border-bottom:1px solid #CCC; border-top:1px solid #CCC; line-height:45px;">
+        查看空间信息：<a href="{:U('Myweb/index/index',array('userid'=>$info['user_id']))}" target="_blank" style=" color:#C30;">楼主空间</a>&nbsp;&nbsp;
+    </div>
+    <div style=" line-height:30px;">联系人：{$info.user_truename}</div>
+    <div style=" line-height:30px;">电&nbsp;话：<span style="font-size:16px; font-weight:bold; color:#C00;">{$info.user_mobile}</span></div>
+    <div style="border-bottom:1px solid #CCC; border-top:1px solid #CCC; line-height:45px;">
+        咨询留言：<a href="{:U('Myweb/index/index',array('userid'=>$info['user_id']))}" style=" color:#0F0;">交谈留言</a>
+    </div>
+    <div style="line-height:30px;">联系我时，请说明在石材吧上看的。谢谢。</div>
+</div>

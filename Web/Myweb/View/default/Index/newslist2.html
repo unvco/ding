@@ -1,0 +1,43 @@
+<include file="include/public_header"/>
+<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td>
+    <!--内容 -->
+    <div style="width:1000px; margin:0px auto; background:#FFF;"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td>
+        <!--左边 -->
+        <include file="include/public_1"/>
+        <!--左边 -->
+        <!--右边 -->
+        <div style="width:730px; float:left; margin-left:25px; margin-top:20px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td height="43px" background="yangshi/contentbg1.jpg">
+                        <span style=" font-size:13px; line-height:20px; display:block; float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你现在所在的位置：企业</span>
+                        <a href="{:U('index',array('userid'=>$userid))}" style=" font-size:13px; line-height:20px; display:block; float:left;">首页</a>
+                        <a href="{:U('newslist2',array('userid'=>$userid))}" style=" font-size:13px; line-height:20px; display:block; float:left;">&nbsp;>&nbsp;企业需求列表</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td background="yangshi/contentbg2.jpg">
+                        <div style="margin:25px;">
+                            <foreach name="lists" item="vo">
+                                <div style=" border-bottom:#666 1px dotted; padding-bottom:10px; padding-top:10px;">
+                                    >>&nbsp;&nbsp;
+                                    <a href="{:U('index',array('userid'=>$userid,'newsid'=>$vo.id))}" target="_blank">
+                                        {$vo.name}
+                                        <span style="color:#999;">({$vo.createtime|date='Y-m-d H:i:s',###})</span>
+                                    </a>
+                                </div>
+                            </foreach>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="18px" background="yangshi/contentbg3.jpg">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <!--右边 -->
+    </td></tr></table>
+    </div>
+    <!--内容 -->
+</td></tr></table>
+<include file="include/public_fooer"/>

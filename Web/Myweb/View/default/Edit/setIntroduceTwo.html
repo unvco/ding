@@ -1,0 +1,22 @@
+<form id="setIntroduceTwo" class="form" action="{:U('setIntroduceTwo')}" method="Post">
+	<div class="row" style="padding: 20px;">
+		<div class="col-md-12"><textarea name="content" class="form-control" rows="5">{$value}</textarea></div>
+	</div>
+	<div style="text-align: center;">
+		<input type="submit" class="btn btn-success" name="submit" value="保存">&nbsp;&nbsp;&nbsp;
+	</div>
+</form>
+
+<script type="text/javascript">
+	$('#setIntroduceTwo').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			location.reload();
+		}else{
+			alert('更新失败');
+		}
+	}
+	function checkForm(){
+
+	}
+</script>

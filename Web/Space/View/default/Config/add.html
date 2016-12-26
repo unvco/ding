@@ -1,0 +1,40 @@
+<form id="add_form" class="form" action="{:U('add')}" method="Post">
+	<style>
+		.myInfo-content { width: 400px;}
+		.con-div{margin-bottom: 10px;}
+	</style>
+	<div class="myInfo-content">
+		<input name="id" value="{$config.id}" type="hidden">
+		<input name="bankuai" value="{$bankuai}" type="hidden">
+		<div class="row con-div">
+			<div class="col-md-4 con-left">类型名：</div>
+			<div class="col-md-8"><input type="text" class="form-control" name="name" value="{$config.name}"/></div>
+		</div>
+		<div class="row con-div">
+			<div class="col-md-4 con-left">备注：</div>
+			<div class="col-md-8"><input type="text" class="form-control" name="remark1" value="{$config.remark1}"/></div>
+		</div>
+		<div style="text-align: center;">
+			<input type="submit" class="btn btn-success" name="submit" value="保存">&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-primary" onclick="javascript:closeDlg();" value="取消">
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$('#add_form').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			showSuccess(data.retData);
+			loadURL("{:U('table')}?bankuai={$bankuai}",'#ajax-content');
+
+			closeDlg();
+		}else{
+			showError(data.errMsg);
+		}
+	}
+	function checkForm(){
+
+
+	}
+</script>
+					

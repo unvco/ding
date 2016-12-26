@@ -1,0 +1,75 @@
+<form id="pagerForm" method="post" action="">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="numPerPage" value=""/>
+	<input type="hidden" name="orderField" value="${param.orderField}"/>
+	<input type="hidden" name="orderDirection" value="${param.orderDirection}"/>
+</form>
+<style type="text/css">
+	.menulist_div1{float: left; width: 25px; height: 20px; background: url(__ROOT__/style/admin/themes/default/images/accordion/accordion.png) no-repeat -0px -154px;}
+	.menulist_tree{float: left; width: 25px; height: 20px; background: url(__ROOT__/style/admin/themes/default/images/tree/tree.png) no-repeat -0px -495px;}
+	.menulist_div2{float: left; width: 25px; height: 20px; background: url(__ROOT__/style/admin/themes/default/images/tree/folder.png) no-repeat -0px -0px;}
+	.menulist_div3{float: left; width: 25px; height: 20px; background: url(__ROOT__/style/admin/themes/default/images/tree/folder.png) no-repeat -0px -100px;}
+	.menulist_div4{float: left; width: 25px; height: 20px;}
+</style>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="delete" href="{:U('delete')}?uid={sid_user}" target="ajaxTodo" callback="tabformcallback" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="add" href="{:U('add')}?uid={sid_user}" target="dialog" width="750" height="410" rel="{:CONTROLLER_NAME}_add"><span>修改</span></a></li>
+			<li><a class="add" href="{:U('add')}" target="dialog" width="750" height="410" rel="{:CONTROLLER_NAME}_add"><span>添加</span></a></li>
+			<li class="line">line</li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="76">
+		<thead>
+		<tr>
+			<th width="30"></th>
+			<th>类别名称</th>
+			<th>绑定关键字</th>
+			<th>类别创建用户id</th>
+			<th>排序号</th>
+			<th>id号</th>
+			<th>创建时间</th>
+			<th>备注</th>
+		</tr>
+		</thead>
+		<tbody>
+		<foreach name="lists" item="vo">
+			<tr target="sid_user" rel="{$vo.id}">
+				<td></td>
+				<td>
+					<!--不是一级分类-->
+					<if condition="$vo.level gt 0 ">
+						<for start="1" end="$vo.level">
+							<div class="menulist_div4"></div>
+						</for>
+						<div class="menulist_tree"></div>
+					</if>
+					{$vo.name}
+				</td>
+				<td>{$vo.keyword}</td>
+				<td>{$vo.userid}</td>
+				<td>{$vo.position}</td>
+				<td>{$vo.id}</td>
+				<td>{$vo.createtime}</td>
+				<td>{$vo.remark1}</td>
+			</tr>
+		</foreach>
+
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>共有数据条</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="200">200</option>
+			</select>
+		</div>
+		<div class="pagination" targetType="navTab" totalCount="" numPerPage="" pageNumShown="1" currentPage="1"></div>
+
+	</div>
+</div>

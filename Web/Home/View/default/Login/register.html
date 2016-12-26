@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>石材吧登陆界面</title>
+    <include file="include/public_style"/>
+</head>
+<style>
+    .body{ background: url("__ROOT__/style/web/default/login/register_bg.jpg") no-repeat; background-size: 100%;}
+    .login_div{ width: 520px; margin: 0 auto;}
+    .login_div_1{margin-top: 50px;}
+    .login_div_1 .a1{display: block;color: #ffffff; font-size: 13px; float: left; line-height: 30px;}
+    .login_div_1 .a2{display: block;color: #ffffff; font-size: 13px; float: right; line-height: 30px;padding:0 7px; border: 1px solid #ffffff; border-radius: 2px; margin-left: 15px;}
+    .login_div_1 .a3{display: block;color: #ffffff; font-size: 13px; float: right; line-height: 30px;}
+    .login_div_2{box-shadow: 8px 8px 10px #000; margin-top: 10px; background: #ffffff; padding: 30px 50px;}
+    .login_logo{text-align: center; margin-bottom: 30px;}
+    .login_div_2_1{margin-bottom: 20px;}
+    .login_div_2_1 input{height: 45px; background: #ffffff; border-radius: 0;}
+    .login_div_2 .button{width: 100%;height: 50px;}
+</style>
+<body class="body">
+<div class="login_div">
+    <div class="login_div_1">
+        <a class="a1" href="{:U('Index/index')}">返回网站首页</a>
+        <a class="a2" href="{:U('register')}">马上注册</a>
+        <a class="a3" href="{:U('login')}">已经有账号</a>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="login_div_2">
+        <div class="login_logo">
+            <img src="__ROOT__/style/web/default/img/logo.gif" width="220px" height="70px" />
+        </div>
+        <form id="register_form" class="form" action="{:U('register')}" method="Post">
+            <div class="login_div_2_1">
+                <input type="text" class="form-control" name="username" id="username" placeholder="请填写用户名">
+            </div>
+            <div class="login_div_2_1">
+                <input type="password" class="form-control" name="password" id="password" placeholder="密码">
+            </div>
+            <div class="login_div_2_1">
+                <input type="password" class="form-control" name="repassword" id="repassword" placeholder="确认密码">
+            </div>
+            <div class="login_div_2_1">
+                <input type="email" class="form-control" name="email" id="email" placeholder="邮箱">
+            </div>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-md-1">
+                    <input type="checkbox" name="checkbox" id="checkbox" checked="checked" />
+                </div>
+                <div class="col-md-11">我已经阅读并同意《本网站用户条款》</div>
+            </div>
+            <input type="submit" class="btn btn-success button" name="submit" value="登陆">
+        </form>
+        <script>
+            $('#register_form').ajaxForm({success:success,beforeSend:checkForm});
+            function success(data){
+                if(data.errNum==0){
+                    jBox.messager(data.retData);
+                    window.location.href="{:U('selectRole')}";
+                }else{
+                    jBox.messager(data.errMsg);
+                }
+            }
+            function checkForm(){
+                if('' === $('input[name=username]').val()){
+                    jBox.messager("用户名不能为空");
+                    return false;
+                }
+                if('' === $('input[name=password]').val()){
+                    jBox.messager("密码不能为空");
+                    return false;
+                }
+                if('' === $('input[name=email]').val()){
+                    jBox.messager("邮箱不能为空");
+                    return false;
+                }
+                if($('input[name=repassword]').val() != $('input[name=password]').val()){
+                    jBox.messager("两次密码不一样");
+                    return false;
+                }
+                if(!$("#checkbox").attr("checked")){
+                    jBox.messager("请仔细阅读《本网站用户条款》");
+                    return false;
+                }
+                if($("#password").val().length>15){
+                    jBox.messager("密码长度应该小于15位");
+                    return false;
+                }
+                if($("#password").val().length<5){
+                    jBox.messager("密码长度应该大于5位");
+                    return false;
+                }
+            }
+        </script>
+    </div>
+</div>
+</body>
+</html>

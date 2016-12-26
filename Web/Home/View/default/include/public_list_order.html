@@ -1,0 +1,30 @@
+<!--列表排序部分 -->
+<style>
+    .order_div{background: #f2f2f2;border: 1px solid #dddddd;margin-top: 15px;}
+    .list_order_mark{line-height: 45px;display: block; float: left;padding: 0 20px; font-size: 13px;}
+    .list_order_mark:hover{background: #ffffff;color: #e2054b;}
+    .order_div .order_active{background: #ffffff;color: #e2054b;}
+</style>
+<div class="order_div">
+    <span class="list_order_mark" rel="">默认</span>
+    <span class="list_order_mark" rel="createtime desc">最新</span>
+    <span class="list_order_mark" rel="price desc">价格 <i class="fa fa-angle-down" style="font-size: 18px;"></i></span>
+    <span class="list_order_mark" rel="price asc">价格 <i class="fa fa-angle-up" style="font-size: 18px;"></i></span>
+    <div style="clear: both;"></div>
+</div>
+<!--列表排序部分 -->
+<script>
+    $('.list_order_mark').click(function(){
+        if(window.location.href.indexOf("?")==-1){
+            window.location.href=window.location.href+"?orderby="+$(this).attr('rel');
+        }else {
+            window.location.href=window.location.href+"&orderby="+$(this).attr('rel');
+        }
+    });
+    $('.list_order_mark').each(function(){
+        var orderby="{$Think.get.orderby}";
+        if($(this).attr('rel')==orderby){
+            $(this).addClass('order_active');
+        }
+    });
+</script>

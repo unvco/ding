@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>设备供应列表--石材吧 专业免费的石材供应、石材设备及企业信息平台</title>
+    <include file="include/public_style"/>
+    <style>
+        .row{padding: 0px;margin: 0px;}
+    </style>
+</head>
+<body>
+<include file="include/public_daohang"/>
+<include file="include/public_search"/>
+<include file="include/public_url_address"/>
+<div class="row" style="width: 1200px;padding: 0px; margin: 0 auto;">
+    <include file="include/public_type_search"/>
+    <include file="include/public_list_order"/>
+    <!--文章列表部分-->
+    <style>
+        .listdiv{padding: 0px; border: 1px solid #dddddd;width: 590px;margin-right: 10px;margin-top: 10px; padding: 15px;}
+        .listdiv:hover{background: #f2f2f2;}
+        .listdiv_title{line-height:40px; height:40px; overflow:hidden; font-weight:bold; font-size:18px; color:#0052a9; display: block;}
+        .listdiv_price{color:#f70745; font-size:14px; font-weight:bold; display: block;}
+        .listdiv_mobile{color:#f9792c; font-size:16px; font-weight: bold;}
+        .listdiv_user{ font-size:13px; color: #000000;}
+        .listdiv_publictime{ font-size:13px; display: block; color: #666666;}
+    </style>
+    <input type="hidden" value="<php>echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];</php>" id="list_url"/>
+    <foreach name="data" item="vo">
+        <div class="col-md-6 listdiv">
+            <div class="row" style="padding: 0;">
+                <div class="col-md-5" style="padding: 0;">
+                    <a href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank">
+                        <img style="border:0px;" src="{$vo.pic_name}" width="210" height="180">
+                    </a>
+                </div>
+                <div class="col-md-7" style="line-height: 27px;font-size: 13px;padding: 0;">
+                    <a class="listdiv_title" href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank">{$vo.name}</a>
+                    <div style="font-size: 14px; color: #1a2226;">设备类别:切割机械</div>
+                    <div style="font-size: 14px;">
+                        联系电话：<span class="listdiv_mobile">{$vo.user_mobile}</span>
+                        价格：<span class="listdiv_mobile"><if condition="$vo.price eq 0">面议<else />{$vo.price}元</if></span>
+                    </div>
+                    <div>发布用户：<a class="listdiv_user" target="_blank">{$vo.user_name}</a></div>
+                    <div class="listdiv_publictime">用户地址：{$vo.user_address}</div>
+                    <span class="listdiv_publictime">发布时间：{$vo.updatetime|date="Y-m-d",###} 点击次数：{$vo.look_num}</span>
+                </div>
+            </div>
+        </div>
+    </foreach>
+    <include file="include/public_list_yema"/>
+    <include file="include/public_content1"/>
+    <!--文章列表部分-->
+</div>
+<include file="include/public_fooer"/>
+</body>
+</html>

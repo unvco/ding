@@ -1,0 +1,20 @@
+<div style=" border-bottom:1px solid #d7d7d7;">
+     <div style="font-size:18px; color:#333; border-bottom:2px solid #F03; width:110px; text-align:center; line-height:35px;">猜你喜欢</div>
+  </div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td>
+  <?php
+    //获取石材供应最热文章11篇
+    $sql_hot2="SELECT * FROM $my_db WHERE bankuai='gongying' or bankuai='shebei' ORDER BY rand() LIMIT 0 , 5";
+    $result_hot2 = mysql_query($sql_hot2);
+    $num_result_hot2=mysql_num_rows($result_hot2);
+    //获取石材供应最热文章11篇
+	for($i=1;$i <=4;$i++){
+  ?> 
+  <a href="<?php echo($http_host);?>/index.php/to/<?php if(mysql_result($result_hot2,$i,"bankuai")=="gongying"){echo("content1");}elseif(mysql_result($result_hot2,$i,"bankuai")=="shebei"){echo("content3");}else{echo("content1");}?>_<?php echo(mysql_result($result_hot2,$i,"id"));?>.html" target="_blank" style=" display:block;font-size:14px; line-height:30px; float:left; margin:15px 15px 15px 0px; text-align:center;">
+     <img src="<?php echo($http_host);?>/system/img/imgtitlepic.php?src=<?php echo($http_host);?><?php echo(mysql_result($result_hot2,$i,"pic_name"));?>&&w=300" width="262" height="222" style="padding:10px; border:1px solid #d7d7d7;"><br>
+     <div style="width:260px; height:30px; overflow:hidden; color:#333;"><?php echo(mysql_result($result_hot2,$i,"name"));?><span style=" color:#F00;">(<?php if((mysql_result($result_hot2,$i,"jiage")==0)||(mysql_result($result_hot2,$i,"jiage")=="")){echo("不限");}else{echo(mysql_result($result_hot2,$i,"jiage")."元");}?>)</span></div>
+  </a>
+  <?php
+	}
+  ?>
+  </td></tr></table>

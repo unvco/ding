@@ -1,0 +1,17 @@
+<!--图片推荐产品 -->
+    <?php
+    //获取石材供应最热文章11篇
+    $sql_hot1="SELECT * FROM $my_db ORDER BY id ASC LIMIT 0 , 4";
+    $result_hot1 = mysql_query($sql_hot1);
+    $num_result_hot1=mysql_num_rows($result_hot1);
+    //获取石材供应最热文章11篇
+	for($i=1;$i <=3;$i++){
+    ?> 
+    <a href="<?php echo($http_host);?>/index.php/to/content1_<?php echo(mysql_result($result_hot1,$i,"id"));?>.html" target="_blank" style="border:1px solid #dbdbdb; text-align:center; padding:10px 0px 0px 0px; margin:0px 0px 10px 0px; display:block; text-decoration:none; color:#333;">
+       <img src="<?php echo($http_host);?>/min_pic/<?php echo(mysql_result($result_hot1,$i,"pic_name"));?>" width="269" height="222"><br>
+       <span style="line-height:30px;"><?php echo(mysql_result($result_hot1,$i,"name"));?></span>
+    </a>
+    <?php
+    }
+    ?>
+    <!--图片推荐产品 -->

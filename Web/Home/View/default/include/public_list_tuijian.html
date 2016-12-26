@@ -1,0 +1,17 @@
+<div style="border:1px solid #dbdbdb;">
+    <div style="line-height:35px; font-size:18px; padding-left:5px; background:#fafafa; border-bottom:1px solid #dbdbdb;">产品推荐</div>
+    <div style="padding:10px;">
+        <div style="padding-bottom:10px; border-bottom:1px solid #dbdbdb; margin-bottom:8px;">
+            <div style="float:left;"><img src="{$newDiv[0]['pic_name']}" width="94" height="67" /></div>
+            <div style="float:left; width:150px; margin-left:10px; line-height:22px;">
+                <a href="{:U('content',array('newsid'=>$newDiv[0]['id']))}" target="_blank" style="font-size:14px; color:#039; display:block; height:22px; overflow:hidden;">{$newDiv[0]['name']}</a>
+                <div style="height:22px; overflow:hidden;">价格：<if condition="$newDiv[0]['price'] eq 0">面议<else />{$newDiv[0]['price']}元</if></span></div>
+                <div style="height:22px; overflow:hidden;">点击次数：{$newDiv[0]['look_num']}</div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <foreach name="newDiv" item="vo">
+            <a href="{:U('content',array('newsid'=>$vo['id']))}" target="_blank" style="line-height:25px;display:block; color:#333; height:25px; overflow:hidden;">{$vo.name}<span style="color:#999;font-size:12px;">(<if condition="$vo['price'] eq 0">面议<else />{$vo.price}元</if>)</span></a>
+        </foreach>
+    </div>
+</div>
