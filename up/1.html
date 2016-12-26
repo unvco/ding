@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="robots" content="index,follow">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="ajaxfileupload.js"></script>
+</head>
+<script type="text/javascript">
+    $(function () {
+        function ajaxFileUpload(uploadfile, comment,userid) {
+            $.ajaxFileUpload({
+                type: "post",
+                url: "/index.php/upload/picture",
+                secureuri: false,
+                fileElementId: uploadfile,
+                data: {userid:userid, comment: comment},
+                dataType: 'json',
+                success: function (data, status) {
+                    if (data['code'] == 0) {
+                        // alert(data['data']['picinfo']['ID']);
+                        // $(val).val(data['data']['picinfo']['ID']);
+                    }
+
+                },
+                error: function (data, status, e) {
+
+                    alert(e);
+                }
+            });
+            return false;
+        }
+    });
+
+</script>
+
+<body>
+<div  class="page">
+    <!-- contents_STERT -->
+    <div id="contents">
+        <div id="main">
+            <div class="joinus">
+                <div class="join enterCont clear">
+                    <div class="join-r">
+                        <div class="sc_head" style="margin-top:10px;">
+                            <input id="input3" type="file" name="file">
+                            <label for="input3">
+                                点击上传
+                                <img id="img3" src="#">
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="join-sub">
+                    <input id="headpic" type="hidden" value="" />
+                </div>
+            </div>
+        </div><!-- / #main -->
+    </div><!-- / #contents -->
+</div><!-- page end -->
+</body>
+</html>
+
+<script>
+    $(function(){
+        $("#input3").on("change",function(){
+            var file = document.getElementById('input3').files[0];
+            if(file.type.indexOf('image') !== -1) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var dataURL = reader.result;
+                    document.getElementById("img3").src = dataURL;
+                    $('#img3').css('display','block');
+                    $.ajaxFileUpload({
+                        type: "post",
+                        url: "<?php echo Yii::app()->baseUrl?>/index.php/upload/outerPicture",
+                        secureuri: false,
+                        fileElementId: "input3",
+                        data: {},
+                        dataType: 'json',
+                        success: function (data, status) {
+                            if (data['code'] == 0) {
+                                $("#headpic").val(data['data']);
+                                // alert(data['data']['picinfo']['ID']);
+                                // $(val).val(data['data']['picinfo']['ID']);
+
+                            }
+                        },
+                        error: function (data, status, e) {
+
+                            // alert(e);
+                        }
+                    });
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
