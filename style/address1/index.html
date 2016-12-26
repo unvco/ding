@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>房金所信息系统帮助中心</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes" name="viewport">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--Loading bootstrap css-->
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="GlobalProvinces_main.js"></script>
+	<script type="text/javascript" src="GlobalProvinces_extend.js"></script>
+	<script type="text/javascript" src="initLocation.js"></script>
+</head>
+<body>
+<form action="info/type/add" method="post" id='info' style="margin:0px;" target="submitObj">
+	<select id="sheng" name="province" ></select> 省
+	<select id="shi" name="city"></select> 市
+	<select id="xian" name="country" ></select> 县
+	<select id="xiang" name="street" ></select> 镇或街道
+</form>
+<script type="text/javascript">
+	$(function(){initLocation({sheng_val:"四川",shi_val:"成都",xian_val:"成华区",xiang_val:"保和街道"});})
+</script>
+</body>
+</html>
